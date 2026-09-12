@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Intelligence Room | Posh AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --asphalt:#0A0A0C;--concrete:#15151A;--court:#22222A;--bone:#F4F1EA;--chalk:#D8D4C8;
+  --navy:#0D2D5E;--navy-deep:#071A38;--blue:#1B9BD1;--blue-soft:#5BB8E0;
+  --canopy:#D4FF3D;--moss:#7BAA3E;--terracotta:#C4521F;--hazard:#FF5A1F;--clay:#FFB627;--jet-pink:#FF2D7A;
+  --bg:var(--asphalt);--surface:var(--concrete);--line:var(--court);--ink:var(--bone);--muted:#9a9788;--card:#15151A;
+  --canopy-text:#D4FF3D;--moss-text:#8Fc24e;--clay-text:#FFB627;--blue-text:#5BB8E0;--terra-text:#E0794A;--pink-text:#FF6FA3;
+  --panel-deep:#071A38;--panel-mid:#0D2D5E;
+  --barcanopy:#D4FF3D;--barblue:#1B9BD1;--barterra:#C4521F;--barclay:#FFB627;--barmoss:#7BAA3E;--barpink:#FF2D7A;--barnavy:#0D2D5E;
+}
+[data-theme="light"]{
+  --bg:#F4F1EA;--surface:#FBFAF6;--line:#E0DCCF;--ink:#161512;--muted:#6b6659;--card:#FFFFFF;--chalk:#4a463c;
+  --canopy-text:#5C7200;--moss-text:#4a7a20;--clay-text:#b07800;--blue-text:#0f6a92;--terra-text:#9c3d13;--pink-text:#c01458;
+}
+.dark-panel{--canopy-text:#D4FF3D;--blue-text:#5BB8E0;--moss-text:#8FC24E;}
+.dark-panel .btn.ghost{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.75)}
+.dark-panel .btn.ghost:hover{border-color:rgba(255,255,255,.6);color:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.mono{font-family:'JetBrains Mono',monospace}
+a{color:var(--blue-text);text-decoration:none}
+/* nav */
+nav.top{position:sticky;top:0;z-index:50;background:var(--panel-deep);border-bottom:1px solid rgba(255,255,255,.08)}
+nav.top .inner{max-width:1120px;margin:0 auto;padding:11px 26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-family:'JetBrains Mono';font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#F4F1EA;font-weight:700;white-space:nowrap}
+.brand .sep{color:rgba(216,212,200,.6);font-size:10px;font-weight:400;margin-left:8px;letter-spacing:.1em}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-left:6px}
+.tab{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:rgba(216,212,200,.72);background:none;border:1px solid transparent;padding:7px 11px;border-radius:7px;cursor:pointer;transition:all .16s;white-space:nowrap}
+.tab:hover{color:#fff;border-color:rgba(255,255,255,.18)}
+.tab.active{color:var(--asphalt);background:var(--canopy);font-weight:700}
+.navright{margin-left:auto;display:flex;align-items:center;gap:9px}
+.nav-cta{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:8px 13px;border-radius:7px;background:var(--blue);color:#04121f;white-space:nowrap}
+.themeBtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#F4F1EA;width:32px;height:32px;border-radius:7px;cursor:pointer;font-size:14px}
+/* views */
+.view{display:none;animation:fade .25s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+section.blk{padding:46px 0;border-bottom:1px solid var(--line)}
+section.blk:last-child{border-bottom:none}
+.secnum{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.24em;color:var(--pink-text);margin-bottom:11px}
+.kicker{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink-text);margin-bottom:14px}
+h1.big{font-family:'Archivo Black',sans-serif;font-size:clamp(32px,5.4vw,60px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase}
+h1.big em{color:var(--canopy-text);font-style:italic;display:inline-block;transform:skewX(-5deg)}
+h2.sec{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,3.4vw,38px);line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+h2.sec em{color:var(--canopy-text);font-style:italic}
+h3.sub{font-family:'Archivo Black',sans-serif;font-size:19px;text-transform:uppercase;letter-spacing:-.01em;margin:34px 0 12px}
+h3.sub em{color:var(--canopy-text);font-style:italic}
+.lede{max-width:800px;margin-top:16px;color:var(--chalk);font-size:16.5px}
+.sub{max-width:840px;margin-top:12px;color:var(--chalk)}
+p.body{max-width:840px;margin:12px 0;color:var(--ink)}
+.metastrip{display:flex;gap:24px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px 24px;margin-bottom:15px}
+.card.tl{border-left:4px solid var(--canopy)}.card.tb{border-left:4px solid var(--blue)}.card.tt{border-left:4px solid var(--terracotta)}.card.tc{border-left:4px solid var(--clay)}.card.tm{border-left:4px solid var(--moss)}
+.card h4{font-family:'Archivo Black';font-size:18px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:5px}
+.card .role{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.chhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.chhead .clabel{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.chhead .ctitle{font-family:'Archivo Black';font-size:18px;text-transform:uppercase;letter-spacing:-.01em}
+.chhead .ctags{margin-left:auto;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:820px){.grid3,.grid4,.grid2{grid-template-columns:1fr}}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:11px 0}
+.tag{font-family:'JetBrains Mono';font-size:11.5px;background:rgba(0,0,0,.05);border:1px solid var(--line);color:var(--chalk);padding:4px 10px;border-radius:6px}
+[data-theme="dark"] .tag{background:rgba(255,255,255,.05)}
+.why{background:rgba(0,0,0,.04);border-left:3px solid var(--canopy);border-radius:0 8px 8px 0;padding:12px 15px;margin-top:13px;font-size:14px;color:var(--ink)}
+[data-theme="dark"] .why{background:rgba(212,255,61,.06)}
+.why b{color:var(--canopy-text)}
+.card.tt .why{border-left-color:var(--terracotta)}.card.tt .why b{color:var(--terra-text)}
+.card.tb .why{border-left-color:var(--blue)}.card.tb .why b{color:var(--blue-text)}
+.card.tc .why{border-left-color:var(--clay)}.card.tc .why b{color:var(--clay-text)}
+.card.tm .why{border-left-color:var(--moss)}.card.tm .why b{color:var(--moss-text)}
+.ev{font-size:13.5px;color:var(--muted);margin-top:10px}
+.ev b{color:var(--ink)}
+/* stat */
+.stat{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 18px}
+.stat .n{font-family:'Archivo Black';font-size:30px;line-height:1;color:var(--canopy-text)}
+.stat .l{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+/* badges */
+.badge{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:20px;font-weight:700;white-space:nowrap;display:inline-block}
+.bh{background:rgba(123,170,62,.18);color:var(--moss-text)}
+.bm{background:rgba(255,182,39,.16);color:var(--clay-text)}
+.bl{background:rgba(154,151,136,.16);color:var(--muted)}
+[data-theme="light"] .bh{color:#39601a}[data-theme="light"] .bm{color:#6b4a00}[data-theme="light"] .bl{color:#565143}
+.bstart{background:var(--canopy);color:var(--asphalt)}
+.bbuild{background:rgba(27,155,209,.18);color:var(--blue-text)}
+.blater{background:rgba(154,151,136,.16);color:var(--muted)}
+.pill{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(0,0,0,.05);border:1px solid var(--line);color:var(--chalk)}
+[data-theme="dark"] .pill{background:rgba(255,255,255,.05)}
+/* callout */
+.callout{background:rgba(0,0,0,.03);border:1px solid var(--line);border-left:3px solid var(--canopy);border-radius:12px;padding:22px 24px;margin:24px 0}
+[data-theme="dark"] .callout{background:linear-gradient(135deg,rgba(212,255,61,.07),rgba(27,155,209,.05))}
+.callout.blue{border-left-color:var(--blue)}.callout.clay{border-left-color:var(--clay)}.callout.terra{border-left-color:var(--terracotta)}
+.callout .k{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--canopy-text);margin-bottom:9px}
+.callout.blue .k{color:var(--blue-text)}.callout.clay .k{color:var(--clay-text)}.callout.terra .k{color:var(--terra-text)}
+.callout p{color:var(--ink);font-size:14.5px}.callout b{color:var(--ink)}
+/* tables */
+.tbl{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
+.tbl th{text-align:left;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--chalk)}
+.tbl td.k{color:var(--ink);font-weight:600}
+.scroll{overflow-x:auto}
+@media(max-width:760px){.scroll .tbl,.scroll .kw{min-width:640px}}
+/* filter table */
+.ftable{width:100%;border-collapse:collapse;margin-top:10px}
+.ftable td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px}
+.ftable td.lbl{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);width:180px}
+.ftable td.val{color:var(--ink)}
+.ftable tr:last-child td{border-bottom:none}
+/* keyword */
+.kw{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
+.kw th{text-align:left;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)}
+.kw td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--chalk)}
+.kw td.term{color:var(--ink);font-family:'JetBrains Mono';font-size:12px}
+/* tierlabel */
+.tierlabel{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono';font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:30px 0 14px;font-weight:700}
+.tierlabel .d{width:11px;height:11px;border-radius:50%}
+.tw .d{background:var(--canopy)}.tw{color:var(--canopy-text)}
+.tabm .d{background:var(--blue)}.tabm{color:var(--blue-text)}
+.tcold .d{background:var(--terracotta)}.tcold{color:var(--terra-text)}
+/* figures */
+figure{margin:26px 0}
+.fig{width:100%;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px}
+.figscroll{overflow-x:auto}
+@media(max-width:700px){.figscroll svg{min-width:600px}}
+svg{width:100%;height:auto;display:block}
+figcaption{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.03em;color:var(--muted);margin-top:12px;line-height:1.5}
+.svglabel{font-family:'JetBrains Mono';font-size:11px;fill:var(--ink)}
+.svgmuted{font-family:'JetBrains Mono';font-size:10px;fill:var(--muted)}
+.svgnum{font-family:'Archivo Black';fill:var(--ink)}
+/* details/disclosure */
+details{margin:12px 0;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--card)}
+summary{list-style:none;cursor:pointer;padding:12px 16px;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.03)}
+[data-theme="dark"] summary{background:rgba(255,255,255,.04)}
+summary::-webkit-details-marker{display:none}
+summary .chip{font-weight:700;color:var(--canopy-text);border:1px solid var(--line);border-radius:5px;padding:0 7px;font-size:13px}
+details[open] summary .chip{color:var(--terra-text)}
+details[open] summary .verb{display:none}
+.dbody{padding:6px 16px 14px}
+/* clean list */
+ul.clean{list-style:none;margin:10px 0}
+ul.clean li{position:relative;padding-left:22px;margin:7px 0;color:var(--ink)}
+ul.clean li::before{content:'▸';position:absolute;left:0;color:var(--canopy-text)}
+/* buttons */
+.btn{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:14px 22px;border-radius:8px;display:inline-block;transition:transform .15s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--canopy);color:var(--asphalt)}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+/* move cards (overview) */
+.move{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;cursor:pointer;transition:border-color .15s,transform .15s;display:block}
+.move:hover{border-color:var(--canopy);transform:translateY(-2px)}
+.move .mn{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;color:var(--pink-text);margin-bottom:8px}
+.move .mt{font-family:'Archivo Black';font-size:16px;text-transform:uppercase;margin-bottom:6px}
+.move .md{font-size:13.5px;color:var(--chalk)}
+.move .arrow{font-family:'JetBrains Mono';font-size:11px;color:var(--canopy-text);margin-top:10px;letter-spacing:.06em}
+/* pricing matrix */
+.pm{width:100%;border-collapse:separate;border-spacing:0;margin-top:18px;font-size:13px}
+.pm th,.pm td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.pm .rowlbl{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);width:180px}
+.pm .ohead{font-family:'Archivo Black';font-size:16px;text-transform:uppercase}
+.pm .price{font-family:'Archivo Black';font-size:22px;color:var(--canopy-text)}
+.pm .per{font-family:'JetBrains Mono';font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.pm td.rec{background:var(--panel-deep);color:#F4F1EA}
+.pm td.rec .ohead{color:#fff}
+.pm td.rec .price{color:#D4FF3D}
+.pm td.rec .per{color:rgba(216,212,200,.7)}
+.pm .rectint{background:rgba(13,45,94,.06)}
+[data-theme="dark"] .pm .rectint{background:rgba(91,184,224,.08)}
+.recpill{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:var(--canopy);color:var(--asphalt);padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.ck{color:var(--moss-text);font-weight:700}
+.cx{color:var(--muted)}
+.cp{color:var(--clay-text);font-weight:700}
+td.rec .ck{color:#8FC24E}td.rec .cp{color:#FFB627}td.rec .cx{color:rgba(216,212,200,.55)}
+.freebar{background:rgba(0,0,0,.03);border:1px solid var(--line);border-left:3px solid var(--moss);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:13.5px;color:var(--ink)}
+[data-theme="dark"] .freebar{background:rgba(123,170,62,.08)}
+/* CTA */
+.ctablock{background:var(--panel-deep);border-radius:16px;padding:40px 36px;margin-top:30px;text-align:center}
+.ctablock h2{font-family:'Archivo Black';font-size:clamp(24px,3.4vw,36px);text-transform:uppercase;color:#F4F1EA;line-height:1.02}
+.ctablock h2 em{color:#D4FF3D;font-style:italic}
+.ctablock p{color:rgba(216,212,200,.85);max-width:600px;margin:14px auto 0;font-size:15px}
+.ctablock .btnrow{justify-content:center}
+/* footer */
+.foot{padding:30px 0 60px}
+.foot .fb{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:700}
+.foot .note{color:var(--muted);font-size:11.5px;margin-top:12px;max-width:860px;line-height:1.6}
+.hl{color:var(--canopy-text)}
+</style>
+<style>
+/* additive, targeting-only, uniquely named */
+.fbands{margin:22px 0 6px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.fband{border-radius:12px;padding:16px 20px;text-align:center;color:#0A0A0C}
+.fband .fbscope{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.04em;font-weight:700}
+.fband .fbname{font-family:'Archivo Black';font-size:16px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:3px}
+.fbwho{max-width:640px;margin:2px auto 0;text-align:center;color:var(--muted);font-size:12.5px;font-family:'JetBrains Mono';letter-spacing:.02em}
+.fb1{width:100%;background:var(--barclay)}
+.fb2{width:70%;background:var(--barblue);color:#04121f}
+.fb3{width:44%;background:var(--barcanopy)}
+.ladder{margin:20px 0 6px;display:flex;flex-direction:column;gap:11px}
+.rung{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start}
+.rung .rnum{font-family:'Archivo Black';font-size:20px;color:var(--muted);line-height:1.2;text-align:center}
+.rung .rbody{min-width:0}
+.rhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rname{font-family:'Archivo Black';font-size:15px;text-transform:uppercase;letter-spacing:-.01em}
+.rcpl{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.rbar{height:15px;border-radius:5px;margin:7px 0 5px}
+.rpool{font-size:13px;color:var(--chalk)}
+.ppill{font-family:'JetBrains Mono';font-size:9px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;margin-bottom:9px}
+.ppri{background:var(--canopy);color:#0A0A0C}
+.psec{background:rgba(27,155,209,.16);color:var(--blue-text)}
+.pobj{background:rgba(255,90,31,.16);color:var(--terra-text)}
+.reach{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line)}
+.reach .rl{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.stag{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;margin-left:auto}
+.stag.launch{background:var(--canopy);color:#0A0A0C}
+.stag.exp{background:rgba(27,155,209,.16);color:var(--blue-text)}
+.tradeoff{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:760px){.tradeoff{grid-template-columns:1fr}}
+.tpanel{border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.tpanel .tph{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.tpanel.up{border-left:4px solid var(--moss);background:rgba(123,170,62,.06)}
+[data-theme="light"] .tpanel.up{background:rgba(123,170,62,.09)}
+.tpanel.up .tph{color:var(--moss-text)}
+.tpanel.catch{border-left:4px solid var(--hazard);background:rgba(255,90,31,.06)}
+[data-theme="light"] .tpanel.catch{background:rgba(255,90,31,.07)}
+.tpanel.catch .tph{color:var(--terra-text)}
+.tpanel ul{list-style:none}
+.tpanel li{position:relative;padding-left:18px;margin:7px 0;font-size:13.5px;color:var(--ink)}
+.tpanel.up li::before{content:'+';position:absolute;left:0;color:var(--moss-text);font-weight:700}
+.tpanel.catch li::before{content:'!';position:absolute;left:2px;color:var(--terra-text);font-weight:700}
+.ichip{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:6px;display:inline-block;margin:2px 6px 2px 0;border:1px solid var(--line)}
+.ic-hi{background:rgba(123,170,62,.16);color:var(--moss-text)}
+.ic-md{background:rgba(255,182,39,.16);color:var(--clay-text)}
+.ic-lo{background:rgba(154,151,136,.14);color:var(--muted)}
+.ic-cost-hi{background:rgba(255,90,31,.14);color:var(--terra-text)}
+.chipband{margin-top:11px}
+
+/* light-mode contrast overrides for small tinted labels */
+[data-theme="light"] .callout.clay .k{color:#6b4a00}
+[data-theme="light"] .tpanel.up .tph{color:#3f6a1c}
+[data-theme="light"] .ic-hi{color:#3f6a1c}
+</style>
+<style>
+/* additive, room-only (ecosystem board + video). Uniquely named. */
+.videowrap{position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:13px;overflow:hidden;border:1px solid var(--line);margin:20px 0}
+.videowrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.gsboard{display:flex;flex-direction:column;gap:16px;margin:22px 0 6px}
+.gspillar{border:1px solid var(--line);border-radius:13px;background:var(--card);padding:18px 20px}
+.gsp-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.gsp-name{font-family:'Archivo Black';font-size:16px;text-transform:uppercase;letter-spacing:-.01em}
+.gsp-role{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);letter-spacing:.02em}
+.gsp-create .gsp-name{color:var(--canopy-text)}
+.gsp-capture .gsp-name{color:var(--terra-text)}
+.gsp-connect .gsp-name{color:var(--blue-text)}
+.gsp-convert .gsp-name{color:var(--moss-text)}
+.gsp-compound .gsp-name{color:var(--clay-text)}
+.gsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}
+.gsmotion{border:1px solid var(--line);border-left:3px solid var(--line);border-radius:9px;padding:11px 13px;background:rgba(0,0,0,.015)}
+[data-theme="dark"] .gsmotion{background:rgba(255,255,255,.02)}
+.gsp-create .gsmotion{border-left-color:var(--barcanopy)}
+.gsp-capture .gsmotion{border-left-color:var(--barterra)}
+.gsp-connect .gsmotion{border-left-color:var(--barblue)}
+.gsp-convert .gsmotion{border-left-color:var(--barmoss)}
+.gsp-compound .gsmotion{border-left-color:var(--barclay)}
+.gsm-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.gsm-id{font-family:'JetBrains Mono';font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.gsm-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:9px}
+.gsm-foot{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ownertag{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:2px 6px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.ownertag.imp{color:var(--blue-text);border-color:var(--blue-text)}
+.ownertag.posh{color:var(--canopy-text);border-color:var(--canopy-text)}
+.gsbadge{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:auto}
+.b-start{background:var(--canopy);color:#0A0A0C}
+.b-build{background:rgba(27,155,209,.16);color:var(--blue-text)}
+.b-later{background:rgba(154,151,136,.16);color:var(--muted)}
+[data-theme="light"] .b-later{color:#565143}
+.b-run{background:rgba(123,170,62,.16);color:var(--moss-text)}
+[data-theme="light"] .b-run{color:#39601a}
+.pips{display:inline-flex;gap:3px;align-items:center}
+.pip{width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);opacity:.5}
+.pip.on{background:var(--muted);opacity:1}
+.gsp-create .pip.on{background:var(--barcanopy);border-color:var(--barcanopy)}
+.gsp-capture .pip.on{background:var(--barterra);border-color:var(--barterra)}
+.gsp-connect .pip.on{background:var(--barblue);border-color:var(--barblue)}
+.gsp-convert .pip.on{background:var(--barmoss);border-color:var(--barmoss)}
+.gsp-compound .pip.on{background:var(--barclay);border-color:var(--barclay)}
+.gslegend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-family:'JetBrains Mono';font-size:10.5px;color:var(--muted);letter-spacing:.02em}
+.gslegend span{display:inline-flex;align-items:center;gap:6px}
+.lgdot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.cp{}
+/* light-mode partial-mark contrast + dark-panel base text pin */
+[data-theme="light"] .cp{color:#6b4a00}
+.rec .cp{color:#FFC65C}
+.dark-panel{color:#F4F1EA}
+</style>
+
+<!-- ============================ RECOMMENDATION VARIABLES (single source of truth) ============================
+  prospect: Posh AI (posh.ai) - agentic AI for banks and credit unions, members and staff
+  thesis: Posh creates demand well; the Connect hub is the missing layer. LinkedIn qualifies the warm audience
+          and the finite FI universe becomes a named account list; Google captures in-market search.
+  entry_motion: LinkedIn hub (retarget + qualify warm 22k audience) + account-based spine; Google capture.
+  recommended_option: OPTION 2 - Paid Search + LinkedIn light, $4,000/mo (up to $10k Google + $5k LinkedIn).
+  options:
+    O1: Thought Leadership + LinkedIn light, $2,500/mo, $5k LinkedIn.
+    O2 (PINNED): Paid Search + LinkedIn light, $4,000/mo, up to $10k Google + $5k LinkedIn.
+    O3: Thought Leadership + Google + LinkedIn, $5,750/mo, $25k+ combined, + 1 newsletter/blog.
+  add_ons: landing pages $1,500/$2,500/$3,500 (1/2/3), recommended with Google. No Channel Check.
+  terms: $1,500 setup; 90-day discovery; fee separate from ad spend.
+  google_role: capture + brand defense + conquest, not the demand engine.
+  channel_order: Create (Posh in-house, amplified) -> Connect (LinkedIn qualify/retarget) -> Capture (Google) -> Extend/Activate (later).
+  hero_segments: S1 LinkedIn-native launch-now (MX + contact-center leaders); S2 named-FI ABM combo; S3 staff-enablement + risk combo.
+  ecosystem_start_set: C4,C5,C6,C7,C8,C9,C11,C13,C14,C21 (derived from Option 2).
+============================================================================================================= -->
+
+</head>
+<body>
+<nav class="top"><div class="inner">
+  <div class="brand">IMPACTABLE<span class="sep">POSH AI</span></div>
+  <div class="tabs">
+    <button class="tab active" data-view="overview">Overview</button>
+    <button class="tab" data-view="whitespace">White Space</button>
+    <button class="tab" data-view="targeting">Targeting</button>
+    <button class="tab" data-view="ecosystem">Ecosystem</button>
+    <button class="tab" data-view="howitworks">How It Works</button>
+    <button class="tab" data-view="paths">Paths Forward</button>
+  </div>
+  <div class="navright">
+    <button class="themeBtn" id="themeBtn" aria-label="Toggle theme">&#9728;</button>
+    <a class="nav-cta" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+
+<section class="view" id="overview">
+  <section class="blk">
+    <div class="kicker">Prepared for Posh</div>
+    <h1 class="big">You create the demand.<br>Now <em>connect it to named accounts.</em></h1>
+    <p class="lede">Posh creates demand well: a deep content library, an executive point of view, and roughly 22,000 LinkedIn followers. In one of the most crowded messaging markets in banking technology, the opportunity is not more content. It is the layer that qualifies that warm audience and turns the finite universe of banks and credit unions into named, sales-ready accounts. This room is built entirely from public sources, with no account access.</p>
+    <div class="btnrow">
+      <a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a strategy call</a>
+      <a class="btn ghost" data-goto="paths" href="#paths">See the paths forward</a>
+    </div>
+    <div class="metastrip">
+      <span>posh.ai</span><span>Banking and credit-union AI</span><span>10 competitors analysed</span><span>September 2026</span>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">THE THESIS</div>
+    <h2 class="sec">One sentence, then <em>the sequence</em></h2>
+    <p class="body">It is not a channel, it is a sequence. Posh already creates the demand. LinkedIn qualifies and retargets the warm audience it creates and surfaces the named institutions leaning in, Google captures the in-market searches and defends the brand, and the finite universe of banks and credit unions becomes an account list the team can actually work. The layer that sits between the demand Posh creates and the accounts sales can call is the connective hub, and it is where the engagement would start. Here are the five moves, each links to the detail.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+      <a class="move" data-goto="whitespace" href="#whitespace"><div class="mn">MOVE 01</div><div class="mt">Own the staff, not just the member</div><div class="md">The whole category automates the member conversation and repeats the same six claims. Almost nobody leads with the employee lifecycle. Posh already runs training, quality, and governed knowledge for staff. That is the open lane.</div><div class="arrow">See the white space →</div></a>
+      <a class="move" data-goto="targeting" href="#targeting"><div class="mn">MOVE 02</div><div class="mt">Work the finite universe as an account list</div><div class="md">Roughly 8,000 to 8,500 US banks and credit unions, each with known executive titles. This is the rare market where the target list is built institution by institution, so account-based is the spine, not a bolt-on.</div><div class="arrow">See the targeting →</div></a>
+      <a class="move" data-goto="targeting" href="#targeting"><div class="mn">MOVE 03</div><div class="mt">Qualify the warm LinkedIn audience</div><div class="md">With site traffic low and the following large, the biggest warm pool lives on LinkedIn, not the website. It is the cheapest thing in the system to qualify and convert, and the natural entry point.</div><div class="arrow">See the targeting →</div></a>
+      <a class="move" data-goto="howitworks" href="#howitworks"><div class="mn">MOVE 04</div><div class="mt">Add the Connect hub</div><div class="md">LinkedIn is the only channel that filters the audience firmographically before spend. It qualifies the warm audience, retargets it, and surfaces the named institutions and hidden pipeline. The plumbing, the Insight Tag, is already live.</div><div class="arrow">See how it works →</div></a>
+      <a class="move" data-goto="paths" href="#paths"><div class="mn">MOVE 05</div><div class="mt">Capture the in-market demand, then earn expansion</div><div class="md">Google captures the searches and defends the brand against conquest. Aim small at the qualification and capture layer first, prove it, then add the full intelligence and activation layer where the pipeline forms.</div><div class="arrow">See the paths forward →</div></a>
+    </div>
+  </section>
+</section>
+
+<section class="view" id="whitespace">
+
+  <section class="blk">
+    <div class="secnum">WHITE SPACE &nbsp;·&nbsp; SECTION 01</div>
+    <h2 class="sec">What everyone says, <em>and what nobody does</em></h2>
+    <p class="sub">Ten live competitors selling AI to banks and credit unions, read from their own sites, pricing and press. This is one of the most crowded messaging markets in financial technology. The opportunity is not a sharper version of the same claim. It is the position the whole field leaves open.</p>
+
+    <div class="grid4" style="margin-top:22px">
+      <div class="stat"><div class="n">10</div><div class="l">Direct rivals</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Near-identical claims</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Absorbed into platforms</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Open position for Posh</div></div>
+    </div>
+
+    <h3 class="sub">The messaging is <em>a commodity war</em></h3>
+    <p class="body">Nearly every headline claim in this category is shared by most of the field. The longer the bar, the more crowded the claim, and the less it can separate anyone. These are the messages to treat as hygiene, not as a reason to choose.</p>
+    <figure>
+      <div class="fig figscroll">
+        <svg viewBox="0 0 900 420" role="img" aria-label="Message saturation by theme">
+          <g class="svglabel" font-size="12">
+            <text x="0" y="26">Purpose-built for banks and credit unions</text><rect x="360" y="14" width="520" height="18" rx="4" fill="var(--barterra)"/><text x="884" y="28" class="svgmuted" text-anchor="end" font-size="10">ALL TEN</text>
+            <text x="0" y="72">24/7 self-service, every channel</text><rect x="360" y="60" width="508" height="18" rx="4" fill="var(--barterra)"/><text x="872" y="74" class="svgmuted" text-anchor="end" font-size="10">EXTREME</text>
+            <text x="0" y="118">Reduce call volume and lift containment</text><rect x="360" y="106" width="500" height="18" rx="4" fill="var(--barterra)"/><text x="864" y="120" class="svgmuted" text-anchor="end" font-size="10">EXTREME</text>
+            <text x="0" y="164">Big-bank capability at a fraction of the cost</text><rect x="360" y="152" width="410" height="18" rx="4" fill="var(--barclay)"/><text x="774" y="166" class="svgmuted" text-anchor="end" font-size="10">HIGH</text>
+            <text x="0" y="210">Integrates with your core</text><rect x="360" y="198" width="400" height="18" rx="4" fill="var(--barclay)"/><text x="764" y="212" class="svgmuted" text-anchor="end" font-size="10">HIGH</text>
+            <text x="0" y="256">Secure and compliant</text><rect x="360" y="244" width="390" height="18" rx="4" fill="var(--barclay)"/><text x="754" y="258" class="svgmuted" text-anchor="end" font-size="10">HIGH</text>
+            <text x="0" y="302">Human-like, agentic conversation</text><rect x="360" y="290" width="360" height="18" rx="4" fill="var(--barclay)"/><text x="724" y="304" class="svgmuted" text-anchor="end" font-size="10">HIGH</text>
+            <text x="0" y="348">Governed, no-hallucination AI</text><rect x="360" y="336" width="250" height="18" rx="4" fill="var(--barblue)"/><text x="616" y="350" class="svglabel" text-anchor="start" font-size="10" style="fill:var(--blue-text);font-weight:700">CLIMBING FAST</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>The top three are said by all ten and by Posh, so they cannot separate anyone. The one to watch is the shortest bar: governed, no-hallucination AI is moving from a differentiator to a basic expectation in real time, which matters for one of the open positions below.</figcaption>
+    </figure>
+
+    <details>
+      <summary><span class="chip">+</span><span class="verb">Show </span>who says each claim, in full</summary>
+      <div class="dbody">
+        <div class="scroll"><table class="tbl">
+          <thead><tr><th>Shared claim</th><th>Who says it</th><th>Why it no longer separates anyone</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Purpose-built for banks and credit unions</td><td>Glia, interface.ai, Eltropy, Kasisto, Kore.ai, Clinc, Posh</td><td>It defines the category, so it cannot distinguish anyone inside it.</td></tr>
+            <tr><td class="k">24/7 self-service, every channel</td><td>All ten, and Posh</td><td>Universal and expected, not a reason to choose.</td></tr>
+            <tr><td class="k">Reduce call volume and lift containment</td><td>All ten</td><td>The category's core promise, repeated everywhere, so buyers discount the number.</td></tr>
+            <tr><td class="k">Big-bank capability at a fraction of the cost</td><td>Glia, Kasisto, implied by others</td><td>A price frame, not a difference.</td></tr>
+            <tr><td class="k">Integrates with your core</td><td>interface.ai, Glia, Eltropy, Kasisto, Posh</td><td>Symitar, Corelation, Fiserv, Jack Henry. The buyer assumes it.</td></tr>
+            <tr><td class="k">Secure and compliant</td><td>All ten</td><td>SOC 2 and PCI. A hygiene claim every serious vendor makes.</td></tr>
+            <tr><td class="k">Governed, no-hallucination AI</td><td>Glia, Backbase, Posh, and rising</td><td>Still partly open as a shown method, but closing fast as a general claim.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">WHITE SPACE &nbsp;·&nbsp; SECTION 02</div>
+    <h2 class="sec">The market has <em>a shape, and an open corner</em></h2>
+    <p class="body">Plot the field on two questions. Left to right: does the platform serve only the customer, or the full staff lifecycle too (training, quality, governed knowledge for employees). Bottom to top: is it a horizontal enterprise tool, or built natively for a financial institution. A pattern appears. The institution-native players lead on the customer conversation and sit on the left. The players with a real employee layer are horizontal and sit at the bottom. The top-right corner, native to financial institutions and serving members and staff alike, is nearly empty.</p>
+    <figure>
+      <div class="fig figscroll">
+        <svg viewBox="0 0 900 480" role="img" aria-label="Competitor positioning map">
+          <line x1="80" y1="40" x2="80" y2="410" stroke="var(--line)" stroke-width="1.5"/>
+          <line x1="80" y1="410" x2="860" y2="410" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="90" y="440" class="svgmuted">Customer only</text>
+          <text x="860" y="440" class="svgmuted" text-anchor="end">Customer + full staff lifecycle</text>
+          <text x="34" y="405" class="svgmuted" transform="rotate(-90 34 405)">Horizontal / enterprise</text>
+          <text x="34" y="180" class="svgmuted" transform="rotate(-90 34 180)">Financial-institution native</text>
+          <rect x="560" y="60" width="270" height="132" rx="10" fill="var(--barcanopy)" opacity="0.12"/>
+          <text x="695" y="112" text-anchor="middle" class="svglabel" style="fill:var(--canopy-text);font-weight:700" font-size="13">THE OPEN CORNER</text>
+          <text x="695" y="134" text-anchor="middle" class="svgmuted" font-size="10.5">FI-native, members and staff, governed</text>
+          <g font-size="11" class="svglabel">
+            <circle cx="300" cy="110" r="6" fill="var(--barblue)"/><text x="312" y="114">Glia</text>
+            <circle cx="380" cy="148" r="6" fill="var(--barblue)"/><text x="392" y="152">interface.ai</text>
+            <circle cx="262" cy="178" r="6" fill="var(--barblue)"/><text x="274" y="182">Eltropy</text>
+            <circle cx="235" cy="220" r="6" fill="var(--barblue)"/><text x="247" y="224">Clinc</text>
+            <circle cx="440" cy="236" r="6" fill="var(--barblue)"/><text x="452" y="240">Kasisto / Backbase</text>
+            <circle cx="470" cy="358" r="6" fill="var(--barterra)"/><text x="482" y="362">SoundHound Amelia</text>
+            <circle cx="228" cy="374" r="6" fill="var(--barterra)"/><text x="240" y="378">PolyAI</text>
+            <circle cx="628" cy="300" r="6" fill="var(--barterra)"/><text x="616" y="290" text-anchor="end">Boost.ai</text>
+            <circle cx="668" cy="352" r="6" fill="var(--barterra)"/><text x="656" y="356" text-anchor="end">Kore.ai</text>
+            <circle cx="560" cy="384" r="6" fill="var(--barterra)"/><text x="548" y="388" text-anchor="end">NiCE Cognigy</text>
+            <circle cx="692" cy="122" r="9" fill="var(--barcanopy)" stroke="var(--ink)" stroke-width="1.5"/><text x="706" y="126" style="fill:var(--canopy-text);font-weight:700">Posh</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Positioning is indicative, read from public messaging and product scope, not a survey. The point is structural: the institution-native rivals lead with the customer, the employee-capable platforms are horizontal, and the corner Posh already occupies, native to financial institutions and serving members and staff in one governed platform, is close to empty.</figcaption>
+    </figure>
+
+    <h3 class="sub">The field is <em>consolidating</em>, and the independents are being absorbed</h3>
+    <p class="body">Three of the strongest names are no longer independent. Kasisto, the longest-standing banking assistant, was acquired by the digital-banking platform Backbase and folded into an AI-native banking operating layer. Amelia was absorbed into SoundHound. Cognigy was absorbed into the contact-center company NICE. The pattern is clear: the specialists are being pulled into larger platforms and stacks. That is itself an argument for a focused, independent partner an institution can adopt without committing to one company's entire core.</p>
+
+    <div class="callout blue">
+      <div class="k">The bigger long-term force</div>
+      <p>Behind the ten sit the banking-platform and core giants embedding AI agents directly into the stack: <b>Backbase</b> (now the owner of Kasisto, with clients including Navy Federal and TD), <b>Q2</b>, <b>Oracle Financial Services</b> and <b>Temenos</b>. They reach the buyer through the core and digital-banking systems the institution already runs, which is a stronger position than any point solution. Posh competes here by being the governed, members-and-staff platform an institution can adopt without a core migration, not by out-scaling the core providers.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">WHITE SPACE &nbsp;·&nbsp; SECTION 03</div>
+    <h2 class="sec">Three positions <em>Posh can own</em></h2>
+    <p class="sub">Each stands on what Posh already does, speaks to a specific buyer, and cites real proof. None of them require anything Posh has not already built. Where a position is contested or closing, that is said plainly.</p>
+
+    <div class="card tl">
+      <div class="chhead"><span class="clabel" style="color:var(--canopy-text)">POSITION 01</span><span class="ctitle">Serve the staff, not just the member</span></div>
+      <p class="body" style="margin-top:0">Almost the entire field automates the member conversation. Very few make the employee, the new hire, the contact-center agent, the trainer, the quality reviewer, the center of the story. That whole side of the work is treated as a secondary feature or left out.</p>
+      <div class="ev"><b>Why it matters:</b> institutions are not only short of member self-service, they are short of trained, confident staff. Onboarding is slow and agents burn out, and the category's more-volume-for-less pitch does nothing for that.</div>
+      <div class="ev"><b>Evidence:</b> Posh already runs the full staff lifecycle in one platform: a training simulator, quality review across every conversation, and a governed knowledge workspace for frontline answers. The proof is on the table, including a four-times reduction in onboarding length at a large credit union and named agent-satisfaction outcomes.</div>
+      <div class="why"><b>How big a deal:</b> high, and less crowded than any customer message. One thing to be straight about: agent-assist and quality specialists exist, so the ownable claim is not that Posh invented staff AI. It is that Posh folds the whole staff lifecycle into the same governed platform that serves members, which the member-service rivals do not match and the staff-only specialists do not do on the member side.</div>
+    </div>
+
+    <div class="card tl">
+      <div class="chhead"><span class="clabel" style="color:var(--canopy-text)">POSITION 02</span><span class="ctitle">Governance you can show, not just claim</span></div>
+      <p class="body" style="margin-top:0">Everyone says secure and compliant. Almost nobody makes governance the visible architecture of the product. As generative AI enters regulated banking, the buyer's real fear is an answer that is confident and wrong.</p>
+      <div class="ev"><b>Why it matters:</b> in a regulated institution, a single wrong automated answer is a compliance event, not a support ticket. The buyer needs to see how the system is kept on-policy, not be told that it is.</div>
+      <div class="ev"><b>Evidence:</b> Posh has a named reasoning framework, Operating Procedures on its own engine, that enforces policy on every response across voice, chat and staff tools. Governance is the design, not a trust-center page. The story writes itself: from rigid scripts to systems that reason inside the institution's own rules.</div>
+      <div class="why"><b>How big a deal:</b> high, but time-sensitive. One thing to be straight about: the field is moving here fast, with no-hallucination and policy-authority claims appearing across competitors. This position is open now and closing. It should be claimed early and demonstrated, not merely asserted.</div>
+    </div>
+
+    <div class="card tl">
+      <div class="chhead"><span class="clabel" style="color:var(--canopy-text)">POSITION 03</span><span class="ctitle">One governed platform, sized for a community institution</span></div>
+      <p class="body" style="margin-top:0">The enterprise platforms are often too heavy for a community bank or credit union. The core and digital-banking giants require the institution to commit to their stack. Between the two sits a buyer who wants one governed platform across members and staff, without an enterprise footprint or a core migration.</p>
+      <div class="ev"><b>Why it matters:</b> a community institution does not want five point tools or a platform migration to modernize service. It wants one partner it can govern and grow into.</div>
+      <div class="ev"><b>Evidence:</b> Posh's unified suite, one management portal and one governed knowledge layer across every product, is purpose-sized for that institution, with more than 100 financial institutions and 200-plus deployments behind it.</div>
+      <div class="why"><b>How big a deal:</b> medium to high. One thing to be straight about: Glia, Eltropy and interface.ai contest the community-native claim directly, so the separation is not community focus alone. It is the members-and-staff breadth in one governed platform at community size.</div>
+    </div>
+
+    <div class="callout blue">
+      <div class="k">A frontier, not a position</div>
+      <p>It is tempting to call the market's biggest gap Posh's open lane. Nobody in this category closes the loop from an AI service interaction to named-account pipeline to attributed revenue, and nobody ties conversational automation to demand across the finite universe of banks and credit unions. But <b>Posh does not do this today either</b>, so it sits inside nobody does this, not ahead of it. Glia is only beginning to touch the edge with outbound loan-growth campaigns. This is the growth direction, the thing a full system gets built around, and it belongs in how the engagement would work, not in a claim Posh can make today.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">WHITE SPACE &nbsp;·&nbsp; SECTION 04</div>
+    <h2 class="sec">The ten <em>competitors, in full</em></h2>
+    <p class="sub">Ten live rivals selling AI to banks and credit unions. Each profile is a strategic finding, not reference material, so all stay on screen. Positioning and proof are drawn from their own sites and press.</p>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">Glia</span><span class="ctags">glia.com · New York, founded 2012</span></div>
+      <div class="ev"><b>Leads with:</b> the leader in AI interactions for banking. One platform that replaces legacy contact-center and digital service tools across chat, voice, video and co-browse.</div>
+      <div class="ev"><b>Strong:</b> the broadest, best-funded rival, with 700-plus published bank and credit-union customers and 167 million dollars-plus raised. Voice pre-trained on 1,000-plus banking tasks, claimed twice as fast as the next alternative, transparent unlimited-usage pricing.</div>
+      <div class="ev"><b>Exposed:</b> competes mainly as a contact-center and channel replacement. The employee lifecycle is lighter than the customer story, and at its scale it is less community-intimate than the niche players.</div>
+      <div class="why"><b>Read for Posh:</b> the main threat on breadth and funding. Do not contest customer containment head-on. Contest on the employee lifecycle and on governance as the architecture, where Glia leads with speed and channel coverage.</div>
+    </div>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">interface.ai</span><span class="ctags">interface.ai · Covina CA, founded 2019</span></div>
+      <div class="ev"><b>Leads with:</b> agentic voice and chat plus employee co-pilots, purpose-built for banks and credit unions.</div>
+      <div class="ev"><b>Strong:</b> deep named integrations into the cores community institutions run (Symitar, Corelation, Fiserv, Jack Henry, CSI, Finxact, COCC, CU*Answers) and very high conversation volume. Expanded into digital sales conversion in late 2025.</div>
+      <div class="ev"><b>Exposed:</b> leads with customer-facing voice and chat; the employee-lifecycle breadth is narrower than its integration depth.</div>
+      <div class="why"><b>Read for Posh:</b> the closest head-to-head on agentic voice, and it shares investors with Posh (Curql, TruStage). Differentiate on the full employee suite and on Operating Procedures as a named, governed method, not on integration count.</div>
+    </div>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">Eltropy</span><span class="ctags">eltropy.com · Milpitas CA, founded 2013</span></div>
+      <div class="ev"><b>Leads with:</b> a unified communications platform for community institutions, voice, text, secure chat and video across lending, collections, contact center and marketing.</div>
+      <div class="ev"><b>Strong:</b> the broadest department footprint in the credit-union space, 750-plus institutions and 50-plus integrations.</div>
+      <div class="ev"><b>Exposed:</b> heritage is communications breadth, not depth of governed reasoning. The AI layer sits on top of a messaging platform rather than being the architecture.</div>
+      <div class="why"><b>Read for Posh:</b> contest on governed AI depth and the employee-productivity lifecycle, not on channel or department breadth, which Eltropy already owns.</div>
+    </div>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">Kasisto</span><span class="ctags">kasisto.com · now part of Backbase</span></div>
+      <div class="ev"><b>Leads with:</b> the longest-standing banking assistant specialist (KAI plus a banking-trained model), from large banks to community institutions.</div>
+      <div class="ev"><b>Strong:</b> deep banking-specific heritage and marquee customers (JPMorgan, Westpac, Standard Chartered, TD) alongside community banks and credit unions.</div>
+      <div class="ev"><b>Exposed:</b> acquired by digital-banking platform Backbase and folded into an AI-native banking operating layer, which pulls it toward the Backbase stack and up-market, away from the standalone community buyer.</div>
+      <div class="why"><b>Read for Posh:</b> the clearest consolidation signal in the field. The category pioneer is now inside a platform. Community institutions wary of committing to one core-and-platform stack are a real opening for a focused, independent partner.</div>
+    </div>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">Boost.ai</span><span class="ctags">boost.ai · Norway, global</span></div>
+      <div class="ev"><b>Leads with:</b> a no-code conversational and voice AI platform for financial services, customer and employee facing.</div>
+      <div class="ev"><b>Strong:</b> named a Leader in the 2025 Gartner Magic Quadrant for Conversational AI Platforms, with major European bank deployments (Nordea, DNB, Santander) and a growing US credit-union push, including a documented internal-support case at a large university credit union.</div>
+      <div class="ev"><b>Exposed:</b> not exclusive to financial institutions; it also serves telecom, insurance and e-commerce, and its US community presence is newer than its European base.</div>
+      <div class="why"><b>Read for Posh:</b> a credible, well-recognized platform, but a generalist. Posh's contrast is being built only for financial institutions and folding the employee lifecycle into the same governed platform.</div>
+    </div>
+
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">Kore.ai</span><span class="ctags">kore.ai · enterprise, multi-industry</span></div>
+      <div class="ev"><b>Leads with:</b> an enterprise agentic AI platform with a prebuilt banking application (BankAssist) and its own model, across customer, employee and agent-assist.</div>
+      <div class="ev"><b>Strong:</b> a powerful, no-code enterprise platform with omnichannel reach, used across highly regulated industries, with named credit-union call-reduction results.</div>
+      <div class="ev"><b>Exposed:</b> a horizontal enterprise platform that analysts note is often over-scoped for community-sized institutions, and not community-native.</div>
+      <div class="why"><b>Read for Posh:</b> enterprise-grade but heavy for a community bank or credit union. Posh wins on being right-sized and financial-institution-only.</div>
+    </div>
+
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">SoundHound Amelia</span><span class="ctags">soundhound.com · Nasdaq SOUN</span></div>
+      <div class="ev"><b>Leads with:</b> voice-first agentic AI (the Amelia 7 platform with multi-agent orchestration) for enterprise, including financial services.</div>
+      <div class="ev"><b>Strong:</b> deep voice-AI capability and scale, working with seven of the top ten global financial institutions plus regional banks and credit unions, and top-ranked by an industry analyst for retail banking assistants.</div>
+      <div class="ev"><b>Exposed:</b> tier-one and multi-industry focus (retail, healthcare, automotive) means less community intimacy and no employee-lifecycle lead.</div>
+      <div class="why"><b>Read for Posh:</b> voice sophistication and scale, but not community-native and not employee-led. Posh's community focus and staff suite are the separation.</div>
+    </div>
+
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">PolyAI</span><span class="ctags">poly.ai · enterprise, multi-industry</span></div>
+      <div class="ev"><b>Leads with:</b> premium, branded voice AI for contact centers, with a financial-services use case.</div>
+      <div class="ev"><b>Strong:</b> very natural branded voice that resolves more than half of customer calls, with a strong compliance posture.</div>
+      <div class="ev"><b>Exposed:</b> voice only, not a full financial-institution platform, and not community-credit-union native.</div>
+      <div class="why"><b>Read for Posh:</b> strong on the voice experience but narrow. Not a customer-plus-employee platform, which is where Posh competes.</div>
+    </div>
+
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">NiCE Cognigy</span><span class="ctags">cognigy.com · now part of NICE</span></div>
+      <div class="ev"><b>Leads with:</b> an enterprise agentic customer-experience platform (voice, chat and agent assist) with a banking use case.</div>
+      <div class="ev"><b>Strong:</b> named a Leader in a major 2026 analyst evaluation, with strong voice and agent-assist capability and a large integration ecosystem.</div>
+      <div class="ev"><b>Exposed:</b> enterprise contact-center focus, now absorbed into a large contact-center software company, and not financial-institution native.</div>
+      <div class="why"><b>Read for Posh:</b> another platform absorbed by a bigger one. Enterprise-scoped and horizontal. Posh's focus and employee suite remain the contrast.</div>
+    </div>
+
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">Clinc</span><span class="ctags">clinc.com · Ann Arbor MI</span></div>
+      <div class="ev"><b>Leads with:</b> conversational AI for banks and credit unions, including a pre-authenticated public banking agent with roughly 30 prebuilt requests for fast deployment.</div>
+      <div class="ev"><b>Strong:</b> early, patented conversational-context handling and a track record powering a large-bank smart assistant.</div>
+      <div class="ev"><b>Exposed:</b> lower current market visibility and public proof than the leaders, and an earlier-generation footprint relative to the newest agentic platforms.</div>
+      <div class="why"><b>Read for Posh:</b> a direct but quieter player. Useful mainly as a benchmark for the pre-authenticated self-service pattern rather than a primary threat.</div>
+    </div>
+
+    <div class="callout terra">
+      <div class="k">Also in the field</div>
+      <p>Around the ten sit three more groups. The banking-platform and core giants embedding agents into the stack, <b>Backbase</b> (owner of Kasisto), <b>Q2</b>, <b>Oracle Financial Services</b> and <b>Temenos</b>, are the larger long-term force. The horizontal AI giants, <b>Salesforce</b> and <b>ServiceNow</b>, are moving into financial-services agents. And a set of adjacent specialists, credit-union conversational players such as Mosaicx, agent-assist and quality specialists such as Balto, Observe.AI and Cresta, and the incumbent contact-center suites (NICE, Verint, Five9, Genesys). The quiet alternative to all of them is building on a general model in-house.</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">WHITE SPACE &nbsp;·&nbsp; SECTION 05</div>
+    <h2 class="sec">The position, <em>and how to say it</em></h2>
+    <div class="callout">
+      <div class="k">The position to own</div>
+      <p style="font-size:16px"><b>Posh runs one governed AI platform that serves members and staff alike, where every answer follows the institution's own procedures, so a community bank or credit union scales its service without losing control or the personal touch.</b></p>
+    </div>
+
+    <h3 class="sub">Say less of <em>this</em></h3>
+    <p class="body">These are true and expected, so they belong in the background, not the headline. Leading with any of them puts Posh in a claim ten others are making.</p>
+    <div class="tags">
+      <span class="tag">Purpose-built for financial institutions</span>
+      <span class="tag">24/7 self-service</span>
+      <span class="tag">Reduce call volume</span>
+      <span class="tag">A fraction of the cost</span>
+      <span class="tag">Integrates with your core</span>
+    </div>
+
+    <h3 class="sub">Lead with <em>this</em></h3>
+    <ul class="clean">
+      <li><b>One system for members and staff.</b> The full staff lifecycle, training, quality and governed knowledge, in the same platform that serves members.</li>
+      <li><b>Governance you can demonstrate.</b> Operating Procedures as a named, shown method, while the field still treats governance as a compliance page.</li>
+      <li><b>Proof density.</b> Quantified, named institution outcomes rather than category promises.</li>
+      <li><b>Right-sized unification.</b> One governed platform at community scale, without an enterprise footprint or a core migration.</li>
+    </ul>
+
+    <h3 class="sub">What to say, <em>by buying stage</em></h3>
+    <div class="scroll"><table class="tbl">
+      <thead><tr><th>Stage</th><th>What to say</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Unaware<br><span class="mono" style="font-size:10px;color:var(--muted)">reframe the problem</span></td><td>The real cost is not call volume, it is onboarding time and agent burnout. &nbsp;·&nbsp; Call-center success metrics were built for humans and need rethinking with AI. &nbsp;·&nbsp; Governance is not a trust-center page, it is the architecture.</td></tr>
+        <tr><td class="k">Aware<br><span class="mono" style="font-size:10px;color:var(--muted)">comparing solutions</span></td><td>Every vendor automates the member chat. Posh also trains, coaches and equips the humans behind it, in one governed platform. &nbsp;·&nbsp; Operating Procedures keep every answer on-policy, across members and staff. &nbsp;·&nbsp; One governed platform, not a stack of point tools.</td></tr>
+        <tr><td class="k">Engaged<br><span class="mono" style="font-size:10px;color:var(--muted)">evaluating Posh</span></td><td>Named institution outcomes, from six-figure annual savings to a 95 percent containment rate to a four-times cut in onboarding. &nbsp;·&nbsp; SOC 2 Type II and CSA STAR. &nbsp;·&nbsp; One platform across voice, digital and staff, managed in one place.</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="btnrow">
+      <a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a working session</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div class="fb">Impactable · Posh AI · Competitive White Space</div>
+    <div class="note">Built from public sources with no account access. Competitor claims, pricing and proof are drawn from each company's own site and press and are indicative, not verified figures. Positioning is a strategic read, not a survey. Unknowns are flagged rather than filled in. DemandSense and Website Visitor ID referenced elsewhere in this engagement are software Impactable operates as a top partner.</div>
+  </div>
+
+</section>
+
+<section class="view" id="targeting">
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 01</div>
+    <h2 class="sec">Who Posh can serve, <em>and who to prioritize</em></h2>
+    <p class="sub">The serviceable market is US banks and credit unions. It is large, growing, and unusually enumerable, so the target list can be built institution by institution. All market figures are third-party estimates that vary by source, so read them as direction, not precision.</p>
+
+    <div class="grid4" style="margin-top:22px">
+      <div class="stat"><div class="n">~4,250</div><div class="l">US credit unions (NCUA Q1 2026)</div></div>
+      <div class="stat"><div class="n">~4,000</div><div class="l">US banks (FDIC-insured)</div></div>
+      <div class="stat"><div class="n">~$14.5B</div><div class="l">US banking AI market, 2026</div></div>
+      <div class="stat"><div class="n">78%</div><div class="l">of US credit unions already use chatbots</div></div>
+    </div>
+    <p class="body">The wedge is the consolidation math. Charters are shrinking by roughly three a week while membership and assets grow, so each remaining institution carries more cost on the same or fewer people. That makes the buy an operating-cost decision, which is exactly what a platform serving members and staff answers. And with 78 percent of credit unions already running chatbots, the decision is replace and expand, not first adoption.</p>
+
+    <h3 class="sub">Narrowing to <em>the priority buyer</em></h3>
+    <div class="fbands">
+      <div class="fband fb1">
+        <div class="fbname">Serviceable market</div>
+        <div class="fbscope">~8,000 to 8,500 US banks and credit unions</div>
+      </div>
+      <div class="fbwho">Everyone Posh could technically serve</div>
+      <div class="fband fb2">
+        <div class="fbname">Ideal customer profile</div>
+        <div class="fbscope">Community banks and mid-size credit unions modernizing member and staff service</div>
+      </div>
+      <div class="fbwho">Where the members-and-staff, governed, right-sized position lands hardest, and the enterprise and core-stack options fit worst</div>
+      <div class="fband fb3">
+        <div class="fbname">Beachhead</div>
+        <div class="fbscope">Mid-size credit unions, ~$500M to $5B assets</div>
+      </div>
+      <div class="fbwho">Contact-center, member-experience and learning leaders who feel onboarding time and cost pressure most, and can move without an enterprise procurement cycle</div>
+    </div>
+    <figcaption style="text-align:center">Each band is a subset of the one above it, not a separate audience.</figcaption>
+
+    <h3 class="sub">The buying <em>committee</em></h3>
+    <div class="grid2">
+      <div class="card tl">
+        <span class="ppill ppri">Primary target</span>
+        <h4>Economic buyer</h4>
+        <div class="ev"><b>Who:</b> CEO, COO, or Chief Member Experience Officer.</div>
+        <div class="ev"><b>Cares about:</b> member experience, cost to serve, and competitive parity with the big banks.</div>
+        <div class="reach"><div class="rl">How we reach them</div>
+          <div class="tags"><span class="tag">Seniority: CXO, VP</span><span class="tag">Function: Operations, Finance</span><span class="tag">Named institution list</span></div>
+        </div>
+      </div>
+      <div class="card tl">
+        <span class="ppill ppri">Primary target</span>
+        <h4>Champion</h4>
+        <div class="ev"><b>Who:</b> VP or Director of Contact Center, Member Experience, or Digital Banking.</div>
+        <div class="ev"><b>Cares about:</b> call volume, containment, agent burnout, onboarding time, and satisfaction scores.</div>
+        <div class="reach"><div class="rl">How we reach them</div>
+          <div class="tags"><span class="tag">Title: VP of Digital Banking</span><span class="tag">Title: Director of Contact Center</span><span class="tag">Function: Operations, Support</span></div>
+        </div>
+      </div>
+      <div class="card tb">
+        <span class="ppill psec">Secondary</span>
+        <h4>Influencers and users</h4>
+        <div class="ev"><b>Who:</b> Learning and Development and HR leaders, quality managers, IT and security.</div>
+        <div class="ev"><b>Cares about:</b> training, quality, integration, and compliance.</div>
+        <div class="reach"><div class="rl">How we reach them</div>
+          <div class="tags"><span class="tag">Function: HR, IT</span><span class="tag">Title: Head of Learning and Development</span><span class="tag">Skills: Compliance, Contact Center</span></div>
+        </div>
+      </div>
+      <div class="card tt">
+        <span class="ppill pobj">Objection to answer</span>
+        <h4>Gatekeeper and incumbent</h4>
+        <div class="ev"><b>Who:</b> the installed incumbent tool and the risk or compliance veto. The incumbent is not an ad audience; the risk officer is.</div>
+        <div class="ev"><b>The objection:</b> we already have a chatbot, our core does this, is it safe and compliant.</div>
+        <div class="reach"><div class="rl">How we answer it</div>
+          <div class="tags"><span class="tag">Reach Chief Risk Officer with governance</span><span class="tag">One platform vs point tools</span><span class="tag">Governance you can show</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 02</div>
+    <h2 class="sec">The audience <em>efficiency ladder</em></h2>
+    <p class="sub">Five rungs, cheapest first. A wider bar means a higher cost per lead. Cold earns budget last, only after the tiers above it prove out.</p>
+
+    <div class="ladder">
+      <div class="rung">
+        <div class="rnum">1</div>
+        <div class="rbody">
+          <div class="rhead"><span class="rname">Warm first-party, bottom of funnel</span><span class="rcpl">$75 to $150 CPL · runs first</span></div>
+          <div class="rbar" style="width:22%;background:var(--barcanopy)"></div>
+          <div class="rpool">Current CRM pipeline and opportunities, demo requesters, pricing-page visitors, current qualified leads.</div>
+        </div>
+      </div>
+      <div class="rung">
+        <div class="rnum">2</div>
+        <div class="rbody">
+          <div class="rhead"><span class="rname">Warm first-party, mid funnel</span><span class="rcpl">$120 to $250 CPL</span></div>
+          <div class="rbar" style="width:38%;background:var(--barmoss)"></div>
+          <div class="rpool">The ~22,000 LinkedIn followers, post and video engagers, webinar registrants, newsletter subscribers, and site visitors. The largest warm pool, and it lives on LinkedIn.</div>
+        </div>
+      </div>
+      <div class="rung">
+        <div class="rnum">3</div>
+        <div class="rbody">
+          <div class="rhead"><span class="rname">In-market search</span><span class="rcpl">capture · feeds the pools</span></div>
+          <div class="rbar" style="width:52%;background:var(--barblue)"></div>
+          <div class="rpool">Buyers already searching for banking AI, member-service automation, and competitor terms, captured on paid search. A capture lane, not the demand engine.</div>
+        </div>
+      </div>
+      <div class="rung">
+        <div class="rnum">4</div>
+        <div class="rbody">
+          <div class="rhead"><span class="rname">Account-based (the workhorse)</span><span class="rcpl">$250 to $400 CPL</span></div>
+          <div class="rbar" style="width:68%;background:var(--barclay)"></div>
+          <div class="rpool">A named list of target institutions, person-filtered to the committee and prioritized by fit, timing and intent signals. Given the finite universe, this carries the plan.</div>
+        </div>
+      </div>
+      <div class="rung">
+        <div class="rnum">5</div>
+        <div class="rbody">
+          <div class="rhead"><span class="rname">Cold LinkedIn, native filters</span><span class="rcpl">$300 to $600+ CPL · runs last</span></div>
+          <div class="rbar" style="width:92%;background:var(--barterra)"></div>
+          <div class="rpool">Broad title and seniority across banking and financial services. Longer cycle, more budget to warm and convert.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <div class="k">Budget shape</div>
+      <p>Warm-first is available here because the LinkedIn following is a real warm pool, unlike a client with no pools to retarget. Given the nameable universe, the account-based rung is weighted more heavily than a standard warm-first split: warm engagement of the LinkedIn audience and the named-account motion lead, and a small cold test earns budget only after both prove efficient. The site-based retargeting pool is thin today and fills as the Insight Tag, Website Visitor ID and form pools grow. Management fee is separate from ad spend, and the bands are indicative, not a forecast.</p>
+    </div>
+    <figcaption>Wider bar means higher cost per lead. Cheapest runs first, cold earns budget last.</figcaption>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 03</div>
+    <h2 class="sec">How the <em>motion works</em></h2>
+    <p class="sub">One system with LinkedIn as the hub. The content engine creates demand and pulls attention to LinkedIn; LinkedIn is the only channel that can filter that audience firmographically before spend, so it qualifies, retargets, and reads the signal off every other channel.</p>
+    <figure>
+      <div class="fig figscroll">
+        <svg viewBox="0 0 900 380" role="img" aria-label="Demand motion flow">
+          <defs>
+            <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker>
+            <marker id="ahc" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--barcanopy)"/></marker>
+          </defs>
+          <!-- Create -->
+          <rect x="16" y="40" width="176" height="86" rx="10" fill="none" stroke="var(--barcanopy)" stroke-width="2"/>
+          <text x="104" y="68" text-anchor="middle" class="svglabel" style="fill:var(--canopy-text);font-weight:700" font-size="11">CREATE</text>
+          <text x="104" y="90" text-anchor="middle" class="svglabel" font-size="12">Content engine</text>
+          <text x="104" y="108" text-anchor="middle" class="svglabel" font-size="12">and exec point of view</text>
+          <!-- Google capture -->
+          <rect x="16" y="210" width="176" height="78" rx="10" fill="none" stroke="var(--barterra)" stroke-width="2"/>
+          <text x="104" y="238" text-anchor="middle" class="svglabel" style="fill:var(--terra-text);font-weight:700" font-size="11">CAPTURE</text>
+          <text x="104" y="260" text-anchor="middle" class="svglabel" font-size="12">Google, in-market</text>
+          <text x="104" y="277" text-anchor="middle" class="svglabel" font-size="12">searches</text>
+          <!-- Audience -->
+          <rect x="268" y="46" width="182" height="74" rx="10" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="359" y="78" text-anchor="middle" class="svglabel" font-size="12">Warm audience:</text>
+          <text x="359" y="96" text-anchor="middle" class="svglabel" font-size="12">22k LinkedIn + site</text>
+          <!-- Hub -->
+          <rect x="268" y="176" width="182" height="118" rx="10" fill="none" stroke="var(--barblue)" stroke-width="2.5"/>
+          <text x="359" y="206" text-anchor="middle" class="svglabel" style="fill:var(--blue-text);font-weight:700" font-size="11">CONNECT · THE HUB</text>
+          <text x="359" y="230" text-anchor="middle" class="svglabel" font-size="12">LinkedIn qualifies</text>
+          <text x="359" y="248" text-anchor="middle" class="svglabel" font-size="12">firmographically,</text>
+          <text x="359" y="266" text-anchor="middle" class="svglabel" font-size="12">retargets and converts</text>
+          <!-- Signals -->
+          <rect x="524" y="86" width="200" height="180" rx="10" fill="none" stroke="var(--barmoss)" stroke-width="2"/>
+          <text x="624" y="114" text-anchor="middle" class="svglabel" style="fill:var(--moss-text);font-weight:700" font-size="11">SIGNALS</text>
+          <text x="624" y="146" text-anchor="middle" class="svglabel" font-size="12">Named institutions</text>
+          <text x="624" y="176" text-anchor="middle" class="svglabel" font-size="12">Hidden pipeline</text>
+          <text x="624" y="206" text-anchor="middle" class="svglabel" font-size="12">Retargeting pools</text>
+          <text x="624" y="236" text-anchor="middle" class="svgmuted" font-size="10">one scored account view</text>
+          <!-- arrows -->
+          <line x1="192" y1="83" x2="264" y2="83" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ah)"/>
+          <line x1="359" y1="120" x2="359" y2="172" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ah)"/>
+          <line x1="192" y1="249" x2="255" y2="249" stroke="var(--muted)" stroke-width="1.5"/>
+          <path d="M255,249 C262,249 268,240 268,232" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ah)"/>
+          <line x1="450" y1="235" x2="520" y2="200" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ah)"/>
+          <!-- feedback loop -->
+          <path d="M624,266 C624,330 359,340 359,298" fill="none" stroke="var(--barcanopy)" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#ahc)"/>
+          <text x="490" y="334" text-anchor="middle" class="svglabel" style="fill:var(--canopy-text)" font-size="10.5">signal feeds the pools, the loop compounds</text>
+        </svg>
+      </div>
+      <figcaption>LinkedIn is the only channel that filters the audience firmographically before spend, which is why the warm LinkedIn pool leads and cold runs last. Google capture and the content engine feed the same pools; the signal layer surfaces named institutions and the hidden pipeline of engaged accounts with no deal yet.</figcaption>
+    </figure>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 04</div>
+    <h2 class="sec">LinkedIn targeting <em>attributes</em></h2>
+    <p class="sub">LinkedIn Campaign Manager targets official, curated attributes, not free-text keywords. Two notes specific to this audience. Credit union is not a clean LinkedIn industry, so credit unions are isolated with a named company list layered on the banking and financial services industries. And buyer situations, a recent core migration, a new digital leader, or acute call-volume pain, are not attributes; they are reached by the ad message and self-selection, or proxied by a third-party signal, never by a native filter.</p>
+
+    <div style="margin-top:20px">
+      <div class="chhead"><span class="clabel" style="color:var(--blue-text)">LOCATION</span></div>
+      <div class="tags"><span class="tag">United States</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">INDUSTRY</span></div>
+      <div class="tags"><span class="tag">Banking</span><span class="tag">Financial Services</span><span class="tag">+ named credit-union company list</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">COMPANY SIZE</span></div>
+      <div class="tags"><span class="tag">51 to 200</span><span class="tag">201 to 500</span><span class="tag">501 to 1,000</span><span class="tag">1,001 to 5,000</span><span class="tag">suppress 10,001+ except enterprise tier</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">JOB SENIORITIES</span></div>
+      <div class="tags"><span class="tag">CXO</span><span class="tag">VP</span><span class="tag">Director</span><span class="tag">Manager</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">JOB FUNCTIONS</span></div>
+      <div class="tags"><span class="tag">Operations</span><span class="tag">Information Technology</span><span class="tag">Support</span><span class="tag">Human Resources</span><span class="tag">Marketing</span><span class="tag">Finance</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">MEMBER JOB TITLES</span></div>
+      <div class="tags"><span class="tag">Chief Experience Officer</span><span class="tag">Chief Digital Officer</span><span class="tag">Chief Information Officer</span><span class="tag">Chief Risk Officer</span><span class="tag">VP of Digital Banking</span><span class="tag">Director of Contact Center</span><span class="tag">Head of Learning and Development</span></div>
+      <div class="ev" style="margin-top:6px">Financial-institution-specific titles are reached via Function plus Seniority plus Skills, not a title filter.</div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">MEMBER SKILLS</span></div>
+      <div class="tags"><span class="tag">Retail Banking</span><span class="tag">Digital Banking</span><span class="tag">Contact Center</span><span class="tag">Customer Experience</span><span class="tag">Regulatory Compliance</span><span class="tag">Learning and Development</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--blue-text)">MEMBER GROUPS</span></div>
+      <div class="tags"><span class="tag">Credit union executive groups</span><span class="tag">Banking professional groups</span><span class="tag">Financial technology communities</span></div>
+      <div class="chhead" style="margin-top:16px"><span class="clabel" style="color:var(--terra-text)">EXCLUSIONS</span></div>
+      <div class="tags"><span class="tag">Existing Posh customers</span><span class="tag">Posh employees</span><span class="tag">Competitors</span><span class="tag">Students</span><span class="tag">Job seekers</span></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 05</div>
+    <h2 class="sec">The priority <em>segments</em></h2>
+    <p class="sub">Two or three named plays assembled from the attributes above. The first is buildable today with no third-party data and is the launch play. The others add a signal layer and are framed as expansion.</p>
+
+    <div class="card tl">
+      <div class="chhead"><span class="ctitle">Segment 1 · Member-experience and contact-center leaders</span><span class="stag launch">LinkedIn native · launch now</span></div>
+      <p class="body" style="margin-top:2px">The champion and economic buyer for the members-and-staff position, built entirely from LinkedIn's own attributes.</p>
+      <table class="ftable">
+        <tr><td class="lbl">Location</td><td class="val">United States</td></tr>
+        <tr><td class="lbl">Industry</td><td class="val">Banking; Financial Services, plus a named credit-union and community-bank company list where available</td></tr>
+        <tr><td class="lbl">Company size</td><td class="val">51 to 200; 201 to 500; 501 to 1,000</td></tr>
+        <tr><td class="lbl">Seniority</td><td class="val">CXO; VP; Director</td></tr>
+        <tr><td class="lbl">Function and titles</td><td class="val">Operations, Support, Marketing; VP of Digital Banking, Director of Contact Center</td></tr>
+      </table>
+      <div class="ev"><b>Estimated size:</b> estimate after build; inferred to be a workable mid-size audience once filtered to the committee. Sized in-platform before launch.</div>
+      <div class="ev"><b>Build defaults:</b> Audience Expansion off, LinkedIn Audience Network off, suppress existing customers, employees and competitors.</div>
+      <div class="why"><b>Why chase it:</b> the buyers who feel onboarding time and agent burnout first, and the ones the members-and-staff position speaks to most directly.</div>
+    </div>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">Segment 2 · Named institutions showing modernization signals</span><span class="stag exp">LinkedIn + signal · expansion</span></div>
+      <p class="body" style="margin-top:2px">The account-based workhorse. The finite universe makes this the spine of the plan.</p>
+      <table class="ftable">
+        <tr><td class="lbl">Base list</td><td class="val">Target institutions from credit-union and bank directories, narrowed by fit and timing (asset tier, core system, hiring for digital or contact-center roles, recent leadership change, content engagement)</td></tr>
+        <tr><td class="lbl">Upload</td><td class="val">Company Matched Audience, person-filtered to the committee seniority and function</td></tr>
+        <tr><td class="lbl">Signal layer</td><td class="val">Web ID (site visitors), Trigify (organic engagers), Clay (enrichment)</td></tr>
+      </table>
+      <div class="ev"><b>Estimated size:</b> the nameable universe of about 8,000 to 8,500 institutions, narrowed by signal to the movers. Sized after the list is built.</div>
+      <div class="ev"><b>Build defaults:</b> same defaults. Prioritized by an account score; hottest accounts handed to outreach and nurture.</div>
+      <div class="why"><b>Why chase it:</b> it carries the plan and surfaces the hidden pipeline of engaged institutions with no deal yet.</div>
+    </div>
+
+    <div class="card tb">
+      <div class="chhead"><span class="ctitle">Segment 3 · Staff-enablement and risk leaders</span><span class="stag exp">LinkedIn + skills · expansion</span></div>
+      <p class="body" style="margin-top:2px">Opens the two positions the field underserves, staff enablement and demonstrable governance, to the people who own them.</p>
+      <table class="ftable">
+        <tr><td class="lbl">Function</td><td class="val">Human Resources; Information Technology</td></tr>
+        <tr><td class="lbl">Seniority and titles</td><td class="val">CXO, VP, Director; Head of Learning and Development, Chief Information Officer, Chief Risk Officer</td></tr>
+        <tr><td class="lbl">Member skills</td><td class="val">Learning and Development; Contact Center; Regulatory Compliance</td></tr>
+        <tr><td class="lbl">Layered on</td><td class="val">the named institution list from Segment 2</td></tr>
+      </table>
+      <div class="ev"><b>Estimated size:</b> a smaller, high-value audience. Estimate after build.</div>
+      <div class="ev"><b>Build defaults:</b> same defaults. Runs as an expansion once the launch play proves out.</div>
+      <div class="why"><b>Why chase it:</b> a second front the field underserves, aimed at the staff-lifecycle and governance positions.</div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 06</div>
+    <h2 class="sec">Paid-search <em>core groups</em></h2>
+    <p class="sub">Search is a capture and conquest lane here, not the demand engine, and both sides are true at once.</p>
+    <div class="tradeoff">
+      <div class="tpanel up">
+        <div class="tph">Why the lane is worth it</div>
+        <ul>
+          <li>Clear intent: the searcher has already decided they want banking AI, so there is no demand to create.</li>
+          <li>A shorter cycle than any cold audience.</li>
+          <li>Self-qualifying queries: the exact term names the need.</li>
+        </ul>
+      </div>
+      <div class="tpanel catch">
+        <div class="tph">The catch</div>
+        <ul>
+          <li>Head terms are contested by Glia, Eltropy, interface.ai and the platform giants, and are among the priciest clicks in business software.</li>
+          <li>The enterprise sales cycle means search captures, it does not close.</li>
+          <li>Category volume in a niche like this is likely modest, so Google is a cheap lane to own, not a traffic engine. Confirm with a keyword pull before setting budget.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">Category capture</span></div>
+      <div class="tags"><span class="tag">credit union AI</span><span class="tag">banking virtual assistant</span><span class="tag">conversational AI for banks</span><span class="tag">member service automation</span></div>
+      <div class="chipband"><span class="ichip ic-hi">Intent: high</span><span class="ichip ic-cost-hi">Cost: high</span></div>
+    </div>
+    <div class="card tm">
+      <div class="chhead"><span class="ctitle">Method and differentiator</span></div>
+      <div class="tags"><span class="tag">AI for bank employees</span><span class="tag">contact center AI coaching</span><span class="tag">governed AI banking</span><span class="tag">banking AI compliance</span></div>
+      <div class="chipband"><span class="ichip ic-hi">Intent: high</span><span class="ichip ic-lo">Cost: low, least contested</span></div>
+    </div>
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">Product and long tail</span></div>
+      <div class="tags"><span class="tag">credit union voice assistant</span><span class="tag">banking chatbot for Symitar</span><span class="tag">member onboarding AI</span></div>
+      <div class="chipband"><span class="ichip ic-hi">Intent: high</span><span class="ichip ic-md">Cost: mixed</span></div>
+    </div>
+    <div class="card tt">
+      <div class="chhead"><span class="ctitle">Competitor conquest</span></div>
+      <div class="tags"><span class="tag">Glia alternative</span><span class="tag">Eltropy alternative</span><span class="tag">interface.ai vs Posh</span><span class="tag">Kasisto alternative</span></div>
+      <div class="chipband"><span class="ichip ic-hi">Intent: high</span><span class="ichip ic-cost-hi">Cost: high</span></div>
+    </div>
+    <div class="card tc">
+      <div class="chhead"><span class="ctitle">Comparison and solution-aware</span></div>
+      <div class="tags"><span class="tag">best AI for credit unions</span><span class="tag">conversational AI vendors banking</span><span class="tag">credit union chatbot comparison</span></div>
+      <div class="chipband"><span class="ichip ic-md">Intent: medium</span><span class="ichip ic-md">Cost: medium · retarget, do not hard-convert</span></div>
+    </div>
+    <div class="card tm">
+      <div class="chhead"><span class="ctitle">Brand defense</span></div>
+      <div class="tags"><span class="tag">Posh AI</span><span class="tag">posh.ai</span><span class="tag">posh banking AI</span></div>
+      <div class="chipband"><span class="ichip ic-hi">Intent: high</span><span class="ichip ic-lo">Cost: low · defends against conquest</span></div>
+    </div>
+
+    <div class="callout terra">
+      <div class="k">Landing pages decide the return</div>
+      <p>Because these clicks are expensive, the page decides the outcome, not the ad. A generic homepage wastes costly traffic. Each group needs a matched page: the staff-training searcher on a Simulator and CoachQA page, the credit-union searcher on a credit-union page, with one clear action, proof sized to the buyer's state of mind, and a short fast form. This is exactly where a focused advertiser out-converts bigger spenders on the same click.</p>
+    </div>
+
+    <div class="callout">
+      <div class="k">Launch set</div>
+      <p>Start with the method and differentiator group and brand defense, the cheapest and least contested, plus two or three category terms on phrase match. Expand into conquest once conversion tracking is proven.</p>
+    </div>
+
+    <div class="callout clay">
+      <div class="k">Negative keywords · brand collision first</div>
+      <p>The brand name is a common word, so brand and category campaigns must exclude the unrelated meanings before anything else.</p>
+      <ul class="clean" style="margin-top:8px">
+        <li><b>Unrelated posh meanings:</b> posh nails, posh spa, posh salon, posh restaurant, posh peanut, posh clothing, posh definition, posh meaning. The high-risk collisions for a campaign built on the word posh.</li>
+        <li><b>Consumer banking:</b> personal loan, checking account, mortgage rates, open account. Posh sells to the institution, not the member.</li>
+        <li><b>Employment:</b> jobs, careers, salary, internship.</li>
+        <li><b>Free and do-it-yourself:</b> free chatbot, open source, build your own, tutorial.</li>
+        <li><b>Off-category:</b> crypto, trading bot, stock, insurance quote.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">TARGETING &nbsp;·&nbsp; SECTION 07</div>
+    <h2 class="sec">Fit and intent <em>signals</em></h2>
+    <p class="sub">The enrichment inputs that build the account list and sharpen cold. Several signals compose into one scored account view, so a target institution is ranked by fit, timing and engagement rather than any single data point.</p>
+    <figure>
+      <div class="fig figscroll">
+        <svg viewBox="0 0 900 340" role="img" aria-label="Signals converging to one scored account view">
+          <g class="svglabel" font-size="12.5">
+            <text x="20" y="48">Institution fit and asset tier</text><circle cx="300" cy="44" r="4" fill="var(--barblue)"/>
+            <text x="20" y="98">Core system installed</text><circle cx="300" cy="94" r="4" fill="var(--barblue)"/>
+            <text x="20" y="148">Hiring and leadership change</text><circle cx="300" cy="144" r="4" fill="var(--barblue)"/>
+            <text x="20" y="198">Organic engagement</text><circle cx="300" cy="194" r="4" fill="var(--barmoss)"/>
+            <text x="20" y="248">Website visitor identification</text><circle cx="300" cy="244" r="4" fill="var(--barmoss)"/>
+            <text x="20" y="298">Topic intent and CRM match</text><circle cx="300" cy="294" r="4" fill="var(--barcanopy)"/>
+          </g>
+          <line x1="300" y1="44" x2="612" y2="160" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="300" y1="94" x2="612" y2="165" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="300" y1="144" x2="612" y2="170" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="300" y1="194" x2="612" y2="175" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="300" y1="244" x2="612" y2="180" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="300" y1="294" x2="612" y2="185" stroke="var(--line)" stroke-width="1.4"/>
+          <circle cx="690" cy="170" r="72" fill="none" stroke="var(--barcanopy)" stroke-width="2.5"/>
+          <text x="690" y="160" text-anchor="middle" class="svglabel" style="fill:var(--canopy-text);font-weight:700" font-size="12">Scored</text>
+          <text x="690" y="178" text-anchor="middle" class="svglabel" style="fill:var(--canopy-text);font-weight:700" font-size="12">account view</text>
+          <text x="690" y="198" text-anchor="middle" class="svgmuted" font-size="10">fit · timing · engagement</text>
+        </svg>
+      </div>
+      <figcaption>A target institution is ranked by the stack, not any one input. Sources are marked on each signal below; sizes and scores are estimated after the list is built.</figcaption>
+    </figure>
+
+    <div class="grid2" style="margin-top:8px">
+      <div class="card tb"><div class="chhead"><span class="clabel" style="color:var(--blue-text)">FIT</span><span class="ctitle" style="font-size:15px">Institution fit and asset tier</span></div><div class="ev"><b>Indicates:</b> in-target size and type, the community and mid-size band. <b>Source:</b> NCUA and FDIC data, directories, Clay.</div></div>
+      <div class="card tb"><div class="chhead"><span class="clabel" style="color:var(--blue-text)">FIT</span><span class="ctitle" style="font-size:15px">Core system installed</span></div><div class="ev"><b>Indicates:</b> integration fit and a displacement opening (Symitar, Corelation, Fiserv, Jack Henry). <b>Source:</b> technographic enrichment, Clay.</div></div>
+      <div class="card tb"><div class="chhead"><span class="clabel" style="color:var(--blue-text)">TIMING</span><span class="ctitle" style="font-size:15px">Hiring signal</span></div><div class="ev"><b>Indicates:</b> modernization intent when hiring for digital, contact-center or AI roles. <b>Source:</b> LinkedIn jobs, hiring data.</div></div>
+      <div class="card tb"><div class="chhead"><span class="clabel" style="color:var(--blue-text)">TIMING</span><span class="ctitle" style="font-size:15px">Leadership change</span></div><div class="ev"><b>Indicates:</b> a buying window when a new digital, experience or technology leader arrives. <b>Source:</b> LinkedIn, news.</div></div>
+      <div class="card tm"><div class="chhead"><span class="clabel" style="color:var(--moss-text)">ENGAGEMENT</span><span class="ctitle" style="font-size:15px">Organic engagement</span></div><div class="ev"><b>Indicates:</b> attention, from engagers on Posh and competitor content. <b>Source:</b> Trigify.</div></div>
+      <div class="card tm"><div class="chhead"><span class="clabel" style="color:var(--moss-text)">ENGAGEMENT</span><span class="ctitle" style="font-size:15px">Website visitor identification</span></div><div class="ev"><b>Indicates:</b> active interest, named institutions on the site. <b>Source:</b> Website Visitor ID.</div></div>
+      <div class="card tl"><div class="chhead"><span class="clabel" style="color:var(--canopy-text)">INTENT</span><span class="ctitle" style="font-size:15px">Topic intent</span></div><div class="ev"><b>Indicates:</b> active research into banking AI and member-service automation. <b>Source:</b> intent data, DemandSense.</div></div>
+      <div class="card tl"><div class="chhead"><span class="clabel" style="color:var(--canopy-text)">INTENT</span><span class="ctitle" style="font-size:15px">CRM match</span></div><div class="ev"><b>Indicates:</b> overlap with existing pipeline and the hidden-pipeline list. <b>Source:</b> DemandSense, CRM.</div></div>
+    </div>
+
+    <div class="callout blue">
+      <div class="k">The enrichment workflow</div>
+      <p>Build the institution list in Clay, compose the signals through DemandSense into one account view, upload the top accounts as a company Matched Audience for LinkedIn, and hand the hottest accounts and the hidden pipeline to outreach and nurture. DemandSense and Website Visitor ID are software Impactable operates as a top partner.</p>
+    </div>
+
+    <div class="btnrow">
+      <a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a working session</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div class="fb">Impactable · Posh AI · Audience Targeting Worksheet</div>
+    <div class="note">Built from public sources with no account access. Market figures are third-party estimates that vary by source and are directional, not precise. Audience sizes are marked observed or inferred, and unmeasured sizes are estimated after the audience is built in-platform. DemandSense and Website Visitor ID are software Impactable operates as a top partner.</div>
+  </div>
+
+</section>
+
+<section class="view" id="ecosystem">
+  <section class="blk">
+    <div class="secnum">ECOSYSTEM &nbsp;·&nbsp; THE GROWTH SYSTEM BOARD</div>
+    <h2 class="sec">The whole system, <em>and where we would start</em></h2>
+    <p class="sub">Every motion in a complete demand system, grouped by the five jobs it has to do. This is forward-looking, not a scorecard: the badges show when each motion enters the plan, and the dots show phase readiness, not a grade. Posh already runs the create motions in-house, so the engagement starts where the gap is. The Start set is exactly the recommended option (Paid Search plus LinkedIn light), which is why this board doubles as the answer to where our engagement begins.</p>
+    <div class="gsboard">
+      <div class="gspillar gsp-create">
+        <div class="gsp-head"><span class="gsp-name">CREATE</span><span class="gsp-role">Create demand and trust before anyone is in-market</span></div>
+        <div class="gsgrid">
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C1</span><span class="gsbadge b-run">Runs today</span></div>
+            <div class="gsm-name">SEO and content foundation</div>
+            <div class="gsm-foot"><span class="ownertag posh">POSH</span><span class="pips"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C2</span><span class="gsbadge b-run">Runs today</span></div>
+            <div class="gsm-name">Founder and expert thought leadership</div>
+            <div class="gsm-foot"><span class="ownertag posh">POSH</span><span class="pips"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C3</span><span class="gsbadge b-run">Runs today</span></div>
+            <div class="gsm-name">Organic distribution depth</div>
+            <div class="gsm-foot"><span class="ownertag posh">POSH</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C4</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Thought-leader amplification</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="gspillar gsp-capture">
+        <div class="gsp-head"><span class="gsp-name">CAPTURE</span><span class="gsp-role">Catch the roughly 5 percent actively searching</span></div>
+        <div class="gsgrid">
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C5</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Brand defense search</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C6</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Core and solution paid search</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C7</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Competitor conquest search</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="gspillar gsp-connect">
+        <div class="gsp-head"><span class="gsp-name">CONNECT</span><span class="gsp-role">Turn anonymous attention into named, scored, routable accounts</span></div>
+        <div class="gsgrid">
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C8</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">LinkedIn retargeting</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C9</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">LinkedIn cold and account-based</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C10</span><span class="gsbadge b-build">Build</span></div>
+            <div class="gsm-name">Bottom-of-funnel conversion</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C11</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Conversion tracking infrastructure</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C12</span><span class="gsbadge b-build">Build</span></div>
+            <div class="gsm-name">Website visitor identification</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C13</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Account intelligence and signal view</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C14</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Enrichment and list building</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="gspillar gsp-convert">
+        <div class="gsp-head"><span class="gsp-name">CONVERT</span><span class="gsp-role">Turn reach and warm accounts into conversations and pipeline</span></div>
+        <div class="gsgrid">
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C15</span><span class="gsbadge b-later">Later</span></div>
+            <div class="gsm-name">Meta reach (gated)</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C16</span><span class="gsbadge b-later">Later</span></div>
+            <div class="gsm-name">Programmatic reach (gated)</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C17</span><span class="gsbadge b-later">Later</span></div>
+            <div class="gsm-name">Email and outreach activation</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C18</span><span class="gsbadge b-build">Build</span></div>
+            <div class="gsm-name">Landing pages and conversion optimization</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C19</span><span class="gsbadge b-build">Build</span></div>
+            <div class="gsm-name">Offer architecture</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C20</span><span class="gsbadge b-build">Build</span></div>
+            <div class="gsm-name">Sales activation loop</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="gspillar gsp-compound">
+        <div class="gsp-head"><span class="gsp-name">COMPOUND</span><span class="gsp-role">Measure, diagnose, and reallocate so the system sharpens each quarter</span></div>
+        <div class="gsgrid">
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C21</span><span class="gsbadge b-start">Start</span></div>
+            <div class="gsm-name">Diagnostics and quarterly review cadence</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+          <div class="gsmotion">
+            <div class="gsm-top"><span class="gsm-id">C22</span><span class="gsbadge b-build">Build</span></div>
+            <div class="gsm-name">Experimentation program</div>
+            <div class="gsm-foot"><span class="ownertag imp">IMP</span><span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gslegend">
+      <span><span class="lgdot" style="background:var(--canopy)"></span>Start &middot; enters in the recommended option</span>
+      <span><span class="lgdot" style="background:var(--blue)"></span>Build &middot; during the engagement</span>
+      <span><span class="lgdot" style="background:var(--court)"></span>Later &middot; sequenced expansion</span>
+      <span><span class="lgdot" style="background:var(--moss)"></span>Runs today &middot; Posh already owns it</span>
+      <span>IMP Impactable &middot; POSH client &middot; dots = phase readiness</span>
+    </div>
+    <div class="callout blue" style="margin-top:22px"><div class="k">How to read this</div><p>The gated reach motions, Meta and programmatic, stay Later on purpose. They inherit a qualified pool and cannot build one, so they only earn budget once the Connect layer has done its job. That sequencing is the difference between reach that compounds and reach that leaks.</p></div>
+  </section>
+</section>
+
+<section class="view" id="howitworks">
+  <section class="blk">
+    <div class="secnum">HOW IT WORKS</div>
+    <h2 class="sec">One system, <em>run in order</em></h2>
+    <p class="sub">Every channel run as one motion, with LinkedIn as the hub. The order is not a preference, it is how the economics compound: each layer makes the next one cheaper. Here is what each does in this account.</p>
+
+    <div style="display:flex;flex-direction:column;gap:15px;margin-top:22px">
+      <div class="card tl">
+        <div class="chhead"><span class="clabel" style="color:var(--canopy-text)">CREATE</span><span class="ctitle">Make demand exist</span><span class="ctags">already running · amplify</span></div>
+        <p class="body" style="margin-top:2px">Posh already runs this in-house: a deep content library, an executive point of view, and roughly 22,000 LinkedIn followers. We do not sell content back to a team that produces it well. We amplify the posts already proving out with Thought Leader Ads, so the best of it reaches the finite institution buyer set and warms the pool the hub qualifies.</p>
+        <div class="why"><b>Job in this account:</b> keep creating demand among buyers not yet searching, and feed the warm audience LinkedIn qualifies.</div>
+      </div>
+      <div class="card tb">
+        <div class="chhead"><span class="clabel" style="color:var(--blue-text)">CONNECT</span><span class="ctitle">Qualify and retarget, the hub</span><span class="ctags">the entry</span></div>
+        <p class="body" style="margin-top:2px">LinkedIn retargets the warm following and engagers, filters them firmographically by institution type, asset size, and role before spend, and runs fit-and-signal account-based campaigns against the named list of banks and credit unions. It is the only channel that filters the audience before spend, and it reads engagement signal off every other channel.</p>
+        <div class="why"><b>Job in this account:</b> turn the demand Posh creates into named, sales-ready institutions, and surface the ones leaning in.</div>
+      </div>
+      <div class="card tt">
+        <div class="chhead"><span class="clabel" style="color:var(--terra-text)">CAPTURE</span><span class="ctitle">Harvest in-market search</span><span class="ctags">add next</span></div>
+        <p class="body" style="margin-top:2px">Google runs brand defense, the core and solution terms, and conquest on Glia, Eltropy, and interface.ai, feeding the same retargeting pools. Positioned as a cheap capture and conquest lane for a niche category, not a traffic engine, with budget set once a keyword-volume pull confirms it.</p>
+        <div class="why"><b>Job in this account:</b> catch the institutions already searching and defend the brand against conquest, cheaply.</div>
+      </div>
+      <div class="card tc">
+        <div class="chhead"><span class="clabel" style="color:var(--clay-text)">EXTEND</span><span class="ctitle">Scale against a qualified pool</span><span class="ctags">later</span></div>
+        <p class="body" style="margin-top:2px">Meta and programmatic reach the underserved named institutions once a qualified pool exists. They inherit a pool, they cannot build one, so they run after the Connect layer has done its work, not before, and they carry account-based air cover to the institutions the coverage map shows are underserved.</p>
+        <div class="why"><b>Job in this account:</b> scale reach cheaply against institutions already qualified, sequenced after the hub.</div>
+      </div>
+      <div class="card tm">
+        <div class="chhead"><span class="clabel" style="color:var(--moss-text)">ACTIVATE</span><span class="ctitle">Turn signal into conversations</span><span class="ctags">as signal fills</span></div>
+        <p class="body" style="margin-top:2px">Signal-triggered outreach and nurture reach the warmed named institutions the moment engagement says they are leaning in, handed to sales as a list. We surface and hand off; the sales team owns the conversation.</p>
+        <div class="why"><b>Job in this account:</b> convert the accounts the hub surfaces into real conversations and pipeline.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">THE SIGNAL LAYER</div>
+    <h2 class="sec">Five signal sources, <em>one account view</em></h2>
+    <p class="sub">Most agencies rent a dashboard. Impactable runs on DemandSense, a signal platform it operates as a top partner. It composes five sources into one account-level view: who is engaging, from what institution, in what role, and how close they are to buying.</p>
+    <figure>
+      <div class="fig figscroll">
+        <svg viewBox="0 0 900 320" role="img" aria-label="Five signal sources converging into one account view">
+          <g class="svglabel" font-size="12.5">
+            <text x="20" y="52">CRM and pipeline</text><circle cx="290" cy="48" r="4" fill="var(--barblue)"/>
+            <text x="20" y="102">LinkedIn paid engagement</text><circle cx="290" cy="98" r="4" fill="var(--barblue)"/>
+            <text x="20" y="152">LinkedIn organic engagement</text><circle cx="290" cy="148" r="4" fill="var(--barmoss)"/>
+            <text x="20" y="202">Companies on the site</text><circle cx="290" cy="198" r="4" fill="var(--barmoss)"/>
+            <text x="20" y="252">People on the site</text><circle cx="290" cy="248" r="4" fill="var(--barcanopy)"/>
+          </g>
+          <line x1="290" y1="48" x2="600" y2="150" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="290" y1="98" x2="600" y2="152" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="290" y1="148" x2="600" y2="155" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="290" y1="198" x2="600" y2="158" stroke="var(--line)" stroke-width="1.4"/>
+          <line x1="290" y1="248" x2="600" y2="160" stroke="var(--line)" stroke-width="1.4"/>
+          <circle cx="678" cy="155" r="74" fill="none" stroke="var(--barblue)" stroke-width="2.5"/>
+          <text x="678" y="145" text-anchor="middle" class="svglabel" style="fill:var(--blue-text);font-weight:700" font-size="12">One account</text>
+          <text x="678" y="163" text-anchor="middle" class="svglabel" style="fill:var(--blue-text);font-weight:700" font-size="12">view</text>
+          <text x="678" y="183" text-anchor="middle" class="svgmuted" font-size="10">scored, routable</text>
+        </svg>
+      </div>
+      <figcaption>Multi-touch accounts convert to pipeline at roughly three times the rate of single-touch. The account view drives a coverage waterfall, an account exposure map, segment verdicts, a waste map, and named-company and named-people identification on the site.</figcaption>
+    </figure>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">MEASUREMENT</div>
+    <h2 class="sec">The reporting <em>a board asks for</em></h2>
+    <p class="sub">If Posh runs HubSpot or Salesforce, the measurement story leads here. Campaign Manager reports impressions and clicks and has no view into the CRM, so it structurally cannot answer whether LinkedIn brought any deals. Authorize the CRM once and deal data matches back to the accounts that saw or engaged with the ads.</p>
+    <div class="grid2" style="margin-top:6px">
+      <div class="card tb"><div class="chhead"><span class="ctitle" style="font-size:16px">Influenced revenue</span></div><div class="ev"><b>What it shows:</b> influenced pipeline, closed-won and closed-lost in one view, a campaign influence score for scale-or-cut, and which audiences produce pipeline rather than only clicks. You choose what counts as influence and set the window to your real sales cycle.</div></div>
+      <div class="card tl"><div class="chhead"><span class="ctitle" style="font-size:16px">Hidden pipeline</span></div><div class="ev"><b>What it shows:</b> institutions with heavy ad engagement and no deal record at all, surfaced automatically and exportable to sales, nurture, or outbound. For a lean go-to-market team this is the most useful list in the system.</div></div>
+    </div>
+    <div class="videowrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/7Pqs4jgyZA4" title="DemandSense influenced revenue walkthrough" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="body">Per layer, the reporting is account penetration and persona reach plus the coverage waterfall for the hub, brand defense and capture cost for Google, and named accounts activated and hidden pipeline surfaced for activation. What we would not promise: full econometric marketing-mix modeling, which is a specialist discipline, and short-cycle booked-call miracles on a long enterprise sales cycle. Reporting is only as good as the conversion capture underneath it, so events are defined and verified in week one.</p>
+    <div class="callout blue">
+      <div class="k">The frontier, stated honestly</div>
+      <p>Closing the loop from an AI-service interaction to named-account pipeline to attributed revenue, and reaching the finite institution universe as a system, is the growth direction past the whole category, Posh included. It is what this system is built toward, not a claim anyone in the market can make today. DemandSense and Website Visitor ID are software Impactable operates as a top partner.</p>
+    </div>
+  </section>
+</section>
+
+<section class="view" id="paths">
+  <section class="blk">
+    <div class="secnum">PATHS FORWARD</div>
+    <h2 class="sec">Where we fit, <em>and where to start</em></h2>
+    <p class="sub">Posh already creates demand well and knows LinkedIn better than most. Where Impactable fits is the connective layer: qualifying that warm audience firmographically, turning the finite universe of banks and credit unions into a named account list, and capturing the in-market search around it. That is a LinkedIn Marketing Partner and CAPI-certified team running the precise motion that turns your warm audience and the named list into pipeline.</p>
+    <div class="callout">
+      <div class="k">Why the recommended option</div>
+      <p>The middle option adds precisely the two paid layers Posh does not run today, qualification and capture, without duplicating the content the team already produces well. It is the sharpest next step: enough to prove the hub and the capture lane on the warm audience and the named list, and structured so the fuller system is earned rather than bought up front.</p>
+    </div>
+
+    <div class="scroll">
+    <table class="pm" style="min-width:820px">
+      <tr>
+        <td class="rowlbl"></td>
+        <td><div class="ohead">Thought Leadership + LinkedIn</div><div class="price">$2,500<span class="per"> /mo</span></div><div class="per">$5k/mo LinkedIn spend</div></td>
+        <td class="rec"><span class="recpill">Recommended for Posh</span><div class="ohead">Paid Search + LinkedIn</div><div class="price">$4,000<span class="per"> /mo</span></div><div class="per">up to $10k Google + $5k LinkedIn</div></td>
+        <td><div class="ohead">Thought Leadership + Google + LinkedIn</div><div class="price">$5,750<span class="per"> /mo</span></div><div class="per">$25k+ combined spend</div></td>
+      </tr>
+      <tr>
+        <td class="rowlbl">The motion</td>
+        <td>A produced executive thought-leadership motion creates demand; LinkedIn retargets the warm audience and runs a thin top-of-funnel to the named account lists.</td>
+        <td class="rec">Google captures in-market search and defends the brand while LinkedIn qualifies and retargets the warm audience Posh already has. The two paid layers Posh does not run, without duplicating in-house content.</td>
+        <td>Everything in the middle option, plus a produced thought-leadership motion and a heavier cold and account-based build.</td>
+      </tr>
+      <tr>
+        <td class="rowlbl">Channels</td>
+        <td><span class="ck">Thought leadership</span> · <span class="ck">LinkedIn retargeting</span> · <span class="cp">LinkedIn cold (thin)</span> · <span class="cx">Google</span></td>
+        <td class="rec"><span class="ck">LinkedIn retargeting</span> · <span class="ck">Google capture and conquest</span> · <span class="cp">LinkedIn cold (thin)</span> · <span class="cp">Thought leadership (your own)</span></td>
+        <td><span class="ck">Thought leadership</span> · <span class="ck">LinkedIn (retarget + cold)</span> · <span class="ck">Google</span> · <span class="cp">Outreach</span></td>
+      </tr>
+      <tr>
+        <td class="rowlbl">Produced</td>
+        <td>Monthly: 1 long-form video, 8 short clips, 12 posts (personal or company). Strategy, interviews, editing, distribution.</td>
+        <td class="rec">Google campaign build and the named account-list build. No content production; we amplify the posts you already run.</td>
+        <td>The content motion above plus 1 newsletter or blog, the Google build, and scored account lists.</td>
+      </tr>
+      <tr>
+        <td class="rowlbl">Signals and intelligence</td>
+        <td>Most-engaged named accounts, Company Hub, DemandSense signals, 3 months Website Visitor ID.</td>
+        <td class="rec">DemandSense five-source signals, Company Hub, cross-channel view, 3 months Website Visitor ID.</td>
+        <td>Full five-source stack, Website Visitor ID ongoing, Clay enrichment, CAPI and CRM sync.</td>
+      </tr>
+      <tr>
+        <td class="rowlbl">Team</td>
+        <td>Strategist plus a thought-leadership and LinkedIn pod.</td>
+        <td class="rec">Strategist plus a paid pod across LinkedIn and Google.</td>
+        <td>Dedicated senior strategist and a full multi-channel pod.</td>
+      </tr>
+      <tr>
+        <td class="rowlbl">Reporting</td>
+        <td>Engagement, qualified reach, cost per action from retargeting. Quarterly Impact Report.</td>
+        <td class="rec">Above, plus dual-channel blended cost and the coverage waterfall. Quarterly Impact Report.</td>
+        <td>Board-grade: influenced revenue when a CRM is connected, account movement, waste verdicts. Quarterly executive business review.</td>
+      </tr>
+      <tr>
+        <td class="rowlbl">Why it fits Posh</td>
+        <td>The lightest entry if you want us to run a dedicated executive content motion alongside retargeting.</td>
+        <td class="rec">Adds the qualification and capture layers you do not run, without duplicating the content you already produce well.</td>
+        <td>The full system when you are ready to scale spend and hand more of the content and activation to us.</td>
+      </tr>
+      <tr>
+        <td class="rowlbl"></td>
+        <td><a class="btn ghost" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Talk it through</a></td>
+        <td class="rec"><a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Start here</a></td>
+        <td><a class="btn ghost" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Talk it through</a></td>
+      </tr>
+    </table>
+    </div>
+    <p class="body" style="font-size:13.5px;color:var(--muted);margin-top:14px">A one-time $1,500 setup covers the build. Terms run on a 90-day discovery horizon. The management fee is always separate from ad spend, which is paid to the platforms.</p>
+
+    <div class="callout clay">
+      <div class="k">Add-on · landing pages</div>
+      <p>New paid search traffic needs a proper destination, so a matched landing page is recommended with either Google option. Built as a one-time block: <b>$1,500 for one page, $2,500 for two, $3,500 for three</b> when bought together, each matched to a search group, with one clear action and proof sized to the buyer.</p>
+    </div>
+
+    <div class="freebar">The free Demand Plan you are reading, the competitor white space and the targeting worksheet, was delivered at no cost and stays free regardless of what happens next.</div>
+  </section>
+
+  <section class="blk">
+    <div class="secnum">PROOF</div>
+    <h2 class="sec">Why <em>these three</em> for you</h2>
+    <div class="grid3">
+      <div class="card tb">
+        <div class="chhead"><span class="ctitle" style="font-size:16px">Lacework</span></div>
+        <div class="ev">6X ROI, 40 percent more qualified leads, and 50 percent faster sales velocity. Published by LinkedIn.</div>
+        <div class="why"><b>Why this one for you:</b> an enterprise, regulated-industry program judged on lead quality, not volume. The closest analog to a compliance-sensitive financial-institution buyer.</div>
+      </div>
+      <div class="card tb">
+        <div class="chhead"><span class="ctitle" style="font-size:16px">Kong</span></div>
+        <div class="ev">Cost per lead cut from roughly $1,000 to $111, with $663K in pipeline across multiple regions.</div>
+        <div class="why"><b>Why this one for you:</b> the efficiency and pipeline story for a long-cycle enterprise motion, exactly the shape of a bank or credit-union sale.</div>
+      </div>
+      <div class="card tl">
+        <div class="chhead"><span class="ctitle" style="font-size:16px">HeyReach</span></div>
+        <div class="ev">13X return, 158 customers. Signal analysis found that roughly 23 percent of site traffic carried strong buyer fit that prior paid had missed.</div>
+        <div class="why"><b>Why this one for you:</b> an organic-heavy team whose warm audience was the hidden asset, activated with signal. The same play as Posh's 22,000-follower pool.</div>
+      </div>
+    </div>
+    <p class="body" style="margin-top:16px">More at <a href="https://impactable-case-studies.vercel.app/" target="_blank" rel="noopener">impactable-case-studies.vercel.app</a>. Standing credentials: LinkedIn Marketing Partner in the first cohort, CAPI-certified, more than 50 million dollars in B2B ad spend managed across 200-plus campaigns, 4.5 on Clutch.</p>
+  </section>
+
+  <div class="foot dark-panel" style="background:var(--panel-deep);border-radius:16px;padding:34px 30px;margin-top:10px">
+    <div style="font-family:'Archivo Black';font-size:22px;text-transform:uppercase;letter-spacing:-.01em;color:#F4F1EA">Turn the demand you create into named accounts.</div>
+    <p style="color:rgba(216,212,200,.85);margin:12px 0 0;max-width:620px">Book a working session and we will scope the qualification and capture layer on your warm audience and the named institution list. No pitch, just the plan.</p>
+    <div class="btnrow">
+      <a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a strategy call</a>
+    </div>
+    <div class="note" style="color:rgba(216,212,200,.7);font-size:11.5px;margin-top:20px;max-width:860px;line-height:1.6">Built from public sources with no account access. Competitor claims, pricing, market figures, and audience sizes are third-party estimates or indicative, not verified figures, and unknowns are flagged rather than filled in. Fees are a current pattern to confirm on the call. DemandSense and Website Visitor ID are software Impactable operates as a top partner.</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement, tbtn=document.getElementById('themeBtn');
+  var saved=null; try{saved=localStorage.getItem('imp_theme');}catch(e){}
+  if(saved){root.setAttribute('data-theme',saved);}
+  function icon(){tbtn.textContent = root.getAttribute('data-theme')==='light' ? '\u2600' : '\u263e';}
+  icon();
+  tbtn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',t);
+    try{localStorage.setItem('imp_theme',t);}catch(e){}
+    icon();
+  });
+  var views=['overview','whitespace','targeting','ecosystem','howitworks','paths'];
+  function showView(v){
+    if(views.indexOf(v)===-1){v='overview';}            // guard: unknown hash degrades to overview, never blank
+    document.querySelectorAll('.view').forEach(function(s){s.classList.toggle('active', s.id===v);});
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active', t.getAttribute('data-view')===v);});
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){var v=t.getAttribute('data-view'); history.replaceState(null,'','#'+v); showView(v);});
+  });
+  document.querySelectorAll('[data-goto]').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault(); var v=a.getAttribute('data-goto'); history.replaceState(null,'','#'+v); showView(v);});
+  });
+  window.addEventListener('hashchange',function(){showView((location.hash||'#overview').slice(1));});
+  showView((location.hash||'#overview').slice(1));
+})();
+</script>
+</body>
+</html>
